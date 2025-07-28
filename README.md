@@ -1,18 +1,16 @@
+# Drop_32B_GUI_HomepageRemake
 
-# Poverty Pimps Vault - GitHub Landing Page (Drop 13B v2)
+- Updated GUI homepage for [https://papiricanpi.github.io](https://papiricanpi.github.io)
+- Replaces Reddit button with `/join.html`
+- Logo watermark: `vault_logo_footer.png`
+- Style and structure preserved for low-latency mobile
 
-## How to Use
-Upload all files in this folder to your GitHub repo root (e.g. `main/`).
+## How to Deploy
 
-## Files Included
-- `index.html`: Main landing page
-- `vault_logo_footer.png`: Official Vault logo (v2)
-- `README.md`: Instructions
-
-## Live URL (if deployed correctly)
-https://papiricanpi.github.io
-
-## Credits
-Built by: Ghostwriter X  
-Powered by: TruthBot Zero  
-Contact: @povertypimpslayer
+```bash
+cd ~/GitHub/papiricanpi.github.io/
+cp -R /path/to/Drop_32B_GUI_HomepageRemake/* .
+git add .
+git commit -m "🔥 GUI Homepage Remake: Remove Reddit, add Join link"
+git push origin main
+```
