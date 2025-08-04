@@ -1,0 +1,13 @@
+cd ~/GitHub/papiricanpi.github.io/
+
+# Create or overwrite join.html
+nano join.html
+# (Paste the code above, then save: Ctrl + O, Enter, Ctrl + X)
+
+# Git push
+git add join.html
+git commit -m "Add working join.html for Vault onboarding"
+git push origin main
+
+nano join.html
+
