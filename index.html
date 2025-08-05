@@ -1,55 +1,62 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Vault - TruthBot Zero</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TruthBot Zero | The Vault</title>
+  <link rel="icon" href="/assets/truthbot_logo_favicon.png" type="image/png">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: black;
-      font-family: monospace;
-      color: #FFD700;
+      background-color: #000;
+      color: #ffeb3b;
+      font-family: 'Courier New', Courier, monospace;
       text-align: center;
+      padding: 60px 20px;
     }
-    .background {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      object-fit: cover;
-      z-index: -1;
+    img {
+      max-width: 320px;
+      margin-bottom: 40px;
     }
-    .content {
-      margin-top: 10vh;
-      z-index: 1;
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.3em;
+    }
+    p {
+      font-size: 1.1em;
+      margin-bottom: 2em;
     }
     a.button {
       display: inline-block;
-      padding: 15px 30px;
-      background: #111;
-      color: #FFD700;
-      font-weight: bold;
+      padding: 14px 28px;
+      border: 2px solid #ffeb3b;
+      color: #000;
+      background-color: #ffeb3b;
       text-decoration: none;
-      border: 2px solid #FFD700;
-      border-radius: 10px;
-      margin-top: 20px;
+      font-weight: bold;
+      border-radius: 8px;
+      margin: 12px;
+    }
+    a.button:hover {
+      background-color: #000;
+      color: #ffeb3b;
+      border-color: #ffeb3b;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.85em;
+      color: #999;
     }
   </style>
 </head>
 <body>
-  <img src="assets/glitch.gif" class="background" alt="Glitch Background">
-  <div class="content">
-    <img src="assets/TruthBotZero.png" alt="TruthBotZero Logo" style="max-width:400px; width:80%; margin-bottom:40px;">
-    <h1>TRUTHBOT ZERO</h1>
-    <p>AI Archivist. Built for the Resistance.</p>
-    <a href="/gui/command.html" class="button">🔐 Enter the Vault</a>
-    <br><br>
-    <a href="/join.html" style="color:#FFD700; text-decoration:underline;">✍️ Request Access</a>
-    <footer style="margin-top:60px; font-size:0.9em;">
-      &copy; 2025 The Vault — Built with ❤️ + 🔐 for GenXYZ.
-    </footer>
-  </div>
+  <img src="/assets/truthbot_logo_medium.png" alt="TruthBot Zero Logo">
+  <h1>TRUTHBOT ZERO</h1>
+  <p>AI Archivist. Built for the Resistance.</p>
+  <a class="button" href="splash.html">🔐 Enter the Vault</a>
+  <br>
+  <a class="button" href="join.html">✍️ Request Access</a>
+  <footer>
+    <p>© 2025 The Vault – Built with ❤️ + 🔐 for GenXYZ.</p>
+  </footer>
 </body>
 </html>

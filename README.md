@@ -1,16 +1,27 @@
-# Drop_32B_GUI_HomepageRemake
+# Drop_34S_GitPagesFix
 
-- Updated GUI homepage for [https://papiricanpi.github.io](https://papiricanpi.github.io)
-- Replaces Reddit button with `/join.html`
-- Logo watermark: `vault_logo_footer.png`
-- Style and structure preserved for low-latency mobile
+This patch fixes:
 
-## How to Deploy
+- 🔧 Missing or broken logo on homepage
+- 📄 Blank `join.html` screen
+- 💣 404s from missing files
 
-```bash
-cd ~/GitHub/papiricanpi.github.io/
-cp -R /path/to/Drop_32B_GUI_HomepageRemake/* .
-git add .
-git commit -m "🔥 GUI Homepage Remake: Remove Reddit, add Join link"
-git push origin main
+## 📦 Upload Instructions
+
+1. Go to your GitHub Pages repo: `papiricanpi.github.io`
+2. Click **"Add file" > "Upload files"**
+3. Upload all contents of this zip (NOT the folder, just the files inside)
+4. Commit changes
+5. Visit: [https://papiricanpi.github.io](https://papiricanpi.github.io)
+
+Make sure `Settings > Pages` is set to:
+- Branch: `main`
+- Folder: `/ (root)`
+
+That's it — you're live.
+
+```
+#TruthBotZero
+#FlashlightGang
+#DigitalResistance
 ```
