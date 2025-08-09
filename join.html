@@ -1,31 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Request Entry to The Vault</title>
-  <style>
-    body {
-      background-color: #0a0a0a;
-      color: #f5f5f5;
-      font-family: 'Courier New', monospace;
-      text-align: center;
-      padding: 40px;
-    }
-    iframe {
-      width: 100%;
-      height: 85vh;
-      border: 2px solid #f5f5f5;
-      border-radius: 12px;
-    }
-  </style>
-</head>
-<body>
-  <h1>🔐 Vault Entry Request</h1>
-  <p>Use the form below to request access to The Vault. Every applicant is vetted.</p>
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request Access — The Vault</title>
+<style>
+  :root{--bg:#0b0b0b;--fg:#ffe74a;--muted:#bfbfbf}
+  html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial}
+  .wrap{max-width:960px;margin:0 auto;padding:28px}
+  h1{color:var(--fg);letter-spacing:2px;margin:10px 0 6px}
+  p{color:#d7d7d7}
+  iframe{width:100%;height:75vh;border:0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .alt{margin-top:18px;font-size:14px;color:var(--muted)}
+  a.btn{display:inline-block;margin-top:10px;padding:12px 16px;border-radius:12px;background:var(--fg);color:#000;text-decoration:none;font-weight:700}
+</style>
+<div class="wrap">
+  <h1>Vault Vetting Form</h1>
+  <p>Fill this out. Mods will review your submission and ping you if approved.</p>
 
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfXXXXXXXXXXXXXXXXXXXX/viewform?embedded=true" frameborder="0" allowfullscreen></iframe>
+  <!-- ✅ Replace the src below with your real Google Form embed link -->
+  <!-- Example: https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true -->
+  <iframe src="about:blank" title="Vault Vetting Form"></iframe>
 
-  <p style="margin-top: 20px; font-size: 0.9em; color: gray;">If the form fails to load, <a href="mailto:pimpfiles@protonmail.me" style="color: #00ffff;">email us</a>.</p>
-</body>
-</html>
+  <p class="alt">If the form doesn’t load, email:
+    <a class="btn" href="mailto:pimpfiles@protonmail.me?subject=Vault%20Vetting%20Request">pimpfiles@protonmail.me</a>
+  </p>
+
+  <!--
+  ⚠️ Don’t put Discord webhooks client-side. 
+  If you want Discord alerts, create a Google Apps Script Web App that 
+  receives the form POST server-side and relays to your webhook.
+  -->
+</div>
+<script>
+  // quick helper so you can paste the form URL once:
+  const FORM_URL = ""; // <- paste your Google Form embed URL here
+  if (FORM_URL) document.querySelector('iframe').src = FORM_URL;
+</script>
