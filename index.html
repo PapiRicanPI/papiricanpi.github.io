@@ -1,70 +1,88 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TruthBot Zero | The Vault</title>
-  <link rel="icon" href="/assets/truthbot_logo_favicon.png" type="image/png">
-  <style>
-    body {
-      background-color: #000;
-      color: #ffeb3b;
-      font-family: 'Courier New', Courier, monospace;
-      text-align: center;
-      padding: 60px 20px;
-    }
-    img {
-      max-width: 320px;
-      margin-bottom: 40px;
-    }
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.3em;
-    }
-    p {
-      font-size: 1.1em;
-      margin-bottom: 2em;
-    }
-    a.button {
-      display: inline-block;
-      padding: 14px 28px;
-      border: 2px solid #ffeb3b;
-      color: #000;
-      background-color: #ffeb3b;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      margin: 12px;
-    }
-    a.button:hover {
-      background-color: #000;
-      color: #ffeb3b;
-      border-color: #ffeb3b;
-    }
-    footer {
-      margin-top: 60px;
-      font-size: 0.85em;
-      color: #999;
-    }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>THE VAULT — REVELATION IS COMING</title>
+<meta http-equiv="Cache-Control" content="no-store" />
+<style>
+  :root { --bg:#0b0b0b; --fg:#ffe74a; --muted:#bfbfbf; }
+  * { box-sizing:border-box }
+  html,body { height:100%; margin:0; background:var(--bg); color:#fff; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial }
+  .wrap { position:relative; height:100%; display:flex; align-items:center; justify-content:center; overflow:hidden }
+  .scan {
+    position:absolute; inset:0; pointer-events:none;
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.06) 1px, transparent 2px, transparent 4px);
+    mix-blend-mode:overlay; animation: scan 6s linear infinite;
+  }
+  @keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
 
-  </style>
-<<<<<<< HEAD
-> </head>
-<body><img src="/assets/truthbot_logo_medium.png" alt="TruthBot Zero Logo">
-=======
-><img src="assets/truthbot_logo_medium_FIXED.png" alt="TruthBot 
-Zero Logo" width="220">
+  .glow { filter: drop-shadow(0 0 18px rgba(255,231,74,.35)); }
+  .logo { width:220px; height:auto; opacity:.98; animation: pop .9s cubic-bezier(.2,.9,.2,1) both }
+  @keyframes pop { 0%{ transform:scale(.8); opacity:0 } 100%{ transform:scale(1); opacity:1 } }
+
+  .title { margin:22px 0 8px; font-weight:800; letter-spacing:2px; text-align:center; color:var(--fg); }
+  .subtitle { margin:0; text-align:center; color:var(--muted); opacity:.9 }
+
+  .glitch {
+    position:relative; display:inline-block; font-size:clamp(22px,3vw,28px); font-weight:700; letter-spacing:.15em; color:var(--fg);
+  }
+  .glitch::before, .glitch::after {
+    content:attr(data-text); position:absolute; left:0; top:0; clip-path:inset(0 0 0 0);
+  }
+  .glitch::before { animation: glitch1 2s infinite linear alternate-reverse; color:#ff3b3b }
+  .glitch::after  { animation: glitch2 1.7s infinite linear alternate-reverse; color:#45a3ff }
+  @keyframes glitch1 {
+    0% { transform:translate(0,0) }
+    20% { transform:translate(-2px,-1px) }
+    40% { transform:translate(2px,1px) }
+    60% { transform:translate(-1px,2px) }
+    80% { transform:translate(1px,-2px) }
+    100% { transform:translate(0,0) }
+  }
+  @keyframes glitch2 {
+    0% { transform:translate(0,0) }
+    25% { transform:translate(1px,-1px) }
+    50% { transform:translate(-1px,1px) }
+    75% { transform:translate(2px,-2px) }
+    100% { transform:translate(0,0) }
+  }
+
+  .bar {
+    width:min(420px,80vw); height:6px; margin:28px auto 0; background:#1e1e1e; border-radius:99px; overflow:hidden;
+    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
+  }
+  .bar > span {
+    display:block; height:100%; width:0%;
+    background:linear-gradient(90deg, #ffe74a, #ffffff);
+    animation: load 4.2s ease-in-out forwards;
+  }
+  @keyframes load { to { width:100% } }
+
+  .footer {
+    position:absolute; bottom:18px; left:0; right:0; text-align:center; font-size:12px; color:#9a9a9a;
+    opacity:.9; letter-spacing:.06em;
+  }
+</style>
+<script>
+  // hard redirect after animation
+  setTimeout(function(){ window.location.href = '/home.html'; }, 4500);
+</script>
 </head>
 <body>
-  <img src="/assets/truthbot_logo_medium.png" alt="TruthBot Zero Logo">
->>>>>>> 020a378 (🔧 Replace old logos with final truthbot_zero.png and update homepage)
-  <h1>TRUTHBOT ZERO</h1>
-  <p>AI Archivist. Built for the Resistance.</p>
-  <a class="button" href="splash.html">🔐 Enter the Vault</a>
-  <br>
-  <a class="button" href="join.html">✍️ Request Access</a>
-  <footer>
-    <p>© 2025 The Vault – Built with ❤️ + 🔐 for GenXYZ.</p>
-  </footer>
+<div class="wrap">
+  <div class="scan"></div>
+  <main style="text-align:center; padding:24px;">
+    <img class="logo glow" src="/assets/truthbot_zero.png" alt="TruthBot Zero Logo">
+    <h1 class="title">THE VAULT — REVELATION IS COMING</h1>
+    <p class="subtitle">
+      <span class="glitch" data-text="@povertyPimpSlayer">@povertyPimpSlayer</span> &nbsp;•&nbsp; TruthBot Zero
+    </p>
+    <div class="bar"><span></span></div>
+  </main>
+  <div cl
+
+  <div class="footer">Auto-redirecting to the Vault…</div>
+</div>
 </body>
 </html>
