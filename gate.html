@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <title>Gate</title>
+  <style>
+    body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#0b0b0b;color:#fff;font:16px system-ui,Segoe UI,Roboto}
+    .card{width:min(520px,92vw);background:#111;border:1px solid #2a2a2a;border-radius:18px;padding:28px 24px;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+    h1{margin:0 0 6px;font-size:22px}
+    p{margin:0 0 18px;color:#bdbdbd}
+    input{width:100%;padding:12px 14px;border:1px solid #2f2f2f;border-radius:12px;background:#0f0f10;color:#fff;outline:none}
+    button{margin-top:12px;width:100%;padding:12px 14px;border:0;border-radius:12px;background:#6ee7b7;color:#001;font-weight:700;cursor:pointer}
+    small{display:block;margin-top:10px;color:#999}
+    .err{color:#ff8080;margin-top:10px;height:18px}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Member Gate</h1>
+    <p>Enter the current access code.</p>
+    <input id="accessCode" type="password" placeholder="••••••••" autocomplete="off" />
+    <button onclick="checkCode()">Enter</button>
+    <div id="message" class="err"></div>
+    <small>Issues? Contact mod.</small>
+  </div>
+
+  <!-- bcrypt (pure JS) -->
+  <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
+  <script>
+    // TODO: replace with YOUR real bcrypt hash
+    const storedHash = "$2b$12$QG7lL3tH0r8m9uC6R6xVfu1qWQmM0b4w5qk3o3K2b3W9tC1xZ9s6y"; // placeholder
+
+    function checkCode(){
+      const entered = document.getElementById('accessCode').value.trim();
+      if(!entered){ msg('Enter the code.'); return; }
+
+      // compare (sync is fine for a single input)
+      const ok = bcrypt.compareSync(entered, storedHash);
+      if(ok){
+        sessionStorage.setItem('vault_access','true');
+        window.location.href = 'index.html';
+      }else{
+        msg('❌ Access denied');
+      }
+    }
+    function msg(t){ document.getElementById('message').textContent = t; }
+
+    // convenience: hit Enter to submit
+    document.getElementById('accessCode').addEventListener('keydown',e=>{
+      if(e.key==='Enter') checkCode();
+    });
+  </script>
+</body>
+</html>
