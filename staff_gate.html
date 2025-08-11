@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault Access Gate</title>
+    <title>Staff Access Gate</title>
     <style>
         body {
             background-color: black;
-            color: #00ffea;
+            color: #ff007f;
             font-family: monospace;
             text-align: center;
             padding: 50px;
@@ -28,20 +28,20 @@
             margin-top: 20px;
             padding: 10px;
             background: black;
-            color: #00ffea;
-            border: 1px solid #00ffea;
+            color: #ff007f;
+            border: 1px solid #ff007f;
         }
     </style>
 </head>
 <body>
-    <h1 class="glitch">ENTER PHRASE TO ACCESS THE VAULT</h1>
+    <h1 class="glitch">STAFF ONLY — ENTER ACCESS PHRASE</h1>
     <input id="phraseInput" placeholder="Type Access Phrase" onkeypress="checkEnter(event)">
     <script>
         function checkEnter(event) {
             if (event.key === 'Enter') {
                 let phrase = document.getElementById('phraseInput').value;
-                if (phrase.toLowerCase() === 'truthbot') {
-                    window.location.href = 'home.html';
+                if (phrase.toLowerCase() === 'truthbot-zero') {
+                    window.location.href = '../gui/command.html';
                 } else {
                     alert('ACCESS DENIED — Incorrect phrase.');
                 }
