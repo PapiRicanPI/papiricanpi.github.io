@@ -2,55 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta http-equiv="Cache-Control" content="no-store" />
-  <title>Gate</title>
+  <title>The Vault — Gate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <!-- Strict CSP: no external scripts; only our own page + Google Forms iframe on join.html -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline';
+    style-src 'self' 'unsafe-inline';
+    img-src 'self' data:;
+    frame-src https://docs.google.com;
+    connect-src 'self';
+    base-uri 'none';
+    form-action 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests;
+  ">
   <style>
-    body{margin:0;min-height:100dvh;display:grid;place-items:center;background:#0b0b0b;color:#fff;font:16px system-ui,Segoe UI,Roboto}
-    .card{width:min(520px,92vw);background:#111;border:1px solid #2a2a2a;border-radius:18px;padding:28px 24px;box-shadow:0 12px 40px rgba(0,0,0,.5)}
-    h1{margin:0 0 6px;font-size:22px}
-    p{margin:0 0 18px;color:#bdbdbd}
-    input{width:100%;padding:12px 14px;border:1px solid #2f2f2f;border-radius:12px;background:#0f0f10;color:#fff;outline:none}
-    button{margin-top:12px;width:100%;padding:12px 14px;border:0;border-radius:12px;background:#6ee7b7;color:#001;font-weight:700;cursor:pointer}
-    small{display:block;margin-top:10px;color:#999}
-    .err{color:#ff8080;margin-top:10px;height:18px}
+    :root { color-scheme: dark light; }
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+         display:grid;place-items:center;min-height:100dvh;background:#0b0d12;color:#eaf0ff;margin:0}
+    .card{width:min(560px,92vw);background:#121623;border:1px solid #1f2435;border-radius:18px;padding:28px}
+    h1{margin:0 0 6px 0} p{opacity:.85;margin:0 0 16px 0}
+    input,button{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #2b3248;background:#0f1424;color:#eaf0ff}
+    input{margin:10px 0 12px 0}
+    button{cursor:pointer}
+    .muted{opacity:.7;font-size:.9rem;margin-top:10px}
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>Member Gate</h1>
-    <p>Enter the current access code.</p>
-    <input id="accessCode" type="password" placeholder="••••••••" autocomplete="off" />
-    <button onclick="checkCode()">Enter</button>
-    <div id="message" class="err"></div>
-    <small>Issues? Contact mod.</small>
-  </div>
+  <main class="card">
+    <h1>Enter The Vault</h1>
+    <p>Authorized access only. Use the current passphrase.</p>
+    <input id="phrase" type="password" autocomplete="off" inputmode="text" placeholder="Passphrase" />
+    <button id="enter">Enter</button>
+    <p class="muted">All attempts are logged. Never paste secrets here.</p>
+  </main>
 
-  <!-- bcrypt (pure JS) -->
-  <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
   <script>
-    // TODO: replace with YOUR real bcrypt hash
-    const storedHash = "$2b$12$QG7lL3tH0r8m9uC6R6xVfu1qWQmM0b4w5qk3o3K2b3W9tC1xZ9s6y"; // placeholder
+    // Adjust this if your site is in a subfolder, e.g. "/vault"
+    const BASE_PATH = '/';
+    // Rotate these as needed; keep short and memorable.
+    const ALLOWED = ["vaultalpha-2025","truthbot-zero"]; // TODO: replace with your real passphrase(s)
+    const TOKEN_KEY = 'vault_token';
+    const TOKEN_TTL_MIN = 15;
 
-    function checkCode(){
-      const entered = document.getElementById('accessCode').value.trim();
-      if(!entered){ msg('Enter the code.'); return; }
-
-      // compare (sync is fine for a single input)
-      const ok = bcrypt.compareSync(entered, storedHash);
-      if(ok){
-        sessionStorage.setItem('vault_access','true');
-        window.location.href = 'index.html';
-      }else{
-        msg('❌ Access denied');
-      }
+    function makeToken() {
+      const exp = Date.now() + TOKEN_TTL_MIN * 60 * 1000;
+      const body = JSON.stringify({ exp, v: 1, rnd: crypto.getRandomValues(new Uint32Array(1))[0] });
+      return btoa(body);
     }
-    function msg(t){ document.getElementById('message').textContent = t; }
 
-    // convenience: hit Enter to submit
-    document.getElementById('accessCode').addEventListener('keydown',e=>{
-      if(e.key==='Enter') checkCode();
+    function setToken(t) {
+      // session-only; also mirror to a SameSite cookie for defense-in-depth
+      sessionStorage.setItem(TOKEN_KEY, t);
+      document.cookie = `${TOKEN_KEY}=${t}; Path=${BASE_PATH}; SameSite=Strict; Secure`;
+    }
+
+    document.getElementById('enter').addEventListener('click', () => {
+      const val = (document.getElementById('phrase').value || '').trim();
+      if (!ALLOWED.includes(val)) {
+        alert('Access denied.');
+        return;
+      }
+      const tok = makeToken();
+      setToken(tok);
+      const url = new URL(BASE_PATH.replace(/\/+$/, '') + '/join.html', location.origin);
+      url.searchParams.set('t', tok);
+      location.href = url.toString();
     });
+
+    // Optional: register SW (blocks caching of Google Forms, etc.)
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register(BASE_PATH + 'sw.js').catch(()=>{});
+    }
   </script>
 </body>
 </html>
