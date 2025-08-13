@@ -1,37 +1,41 @@
-<!doctype html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Request Access — The Vault</title>
+
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Vault — Join</title>
+<meta http-equiv="X-Content-Type-Options" content="nosniff"/>
+<meta name="referrer" content="no-referrer"/>
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0"/>
+<meta http-equiv="Pragma" content="no-cache"/>
 <style>
-  :root{--bg:#0b0b0b;--fg:#ffe74a;--muted:#bfbfbf}
-  html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial}
-  .wrap{max-width:960px;margin:0 auto;padding:28px}
-  h1{color:var(--fg);letter-spacing:2px;margin:10px 0 6px}
-  p{color:#d7d7d7}
-  iframe{width:100%;height:75vh;border:0;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  .alt{margin-top:18px;font-size:14px;color:var(--muted)}
-  a.btn{display:inline-block;margin-top:10px;padding:12px 16px;border-radius:12px;background:var(--fg);color:#000;text-decoration:none;font-weight:700}
-</style>
-<div class="wrap">
-  <h1>Vault Vetting Form</h1>
-  <p>Fill this out. Mods will review your submission and ping you if approved.</p>
-
-  <!-- ✅ Replace the src below with your real Google Form embed link -->
-  <!-- Example: https://docs.google.com/forms/d/e/FORM_ID/viewform?embedded=true -->
-  <iframe src="about:blank" title="Vault Vetting Form"></iframe>
-
-  <p class="alt">If the form doesn’t load, email:
-    <a class="btn" href="mailto:pimpfiles@protonmail.me?subject=Vault%20Vetting%20Request">pimpfiles@protonmail.me</a>
-  </p>
-
-  <!--
-  ⚠️ Don’t put Discord webhooks client-side. 
-  If you want Discord alerts, create a Google Apps Script Web App that 
-  receives the form POST server-side and relays to your webhook.
-  -->
-</div>
+:root{--bg:#0a0a0a;--fg:#e6e6e6;--muted:#999;--link:#18ffd8}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:grid;place-items:center}
+.card{width:min(92vw,720px);background:#0f0f0f;border:1px solid #1e1e1e;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+h1{margin:0 0 8px 0;font-size:22px;letter-spacing:.6px}p{margin:0 0 16px 0;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+a.btn{display:inline-block;padding:12px 16px;border-radius:12px;font-weight:700;text-decoration:none;background:#111;border:1px solid #2a2a2a;color:var(--fg)}
+a.btn:hover{border-color:#2dd4bf}
+.warn{margin-top:10px;color:#bbb;font-size:13px}
+.err{color:#ff4d4d;font-size:14px;min-height:18px;margin-top:8px}
+</style></head><body>
+<main class="card">
+  <h1>Join The Vault</h1>
+  <p>Step 2 — Complete the vetting form. Your application is reviewed by Ops. Keep sources credible.</p>
+  <div id="err" class="err" role="alert" aria-live="polite"></div>
+  <div class="actions">
+    <a id="openForm" class="btn" target="_blank" rel="noopener noreferrer" referrerpolicy="no-referrer">Open Vetting Form</a>
+    <a class="btn" href="/gate.html">Back to Gate</a>
+  </div>
+  <p class="warn">If you see an access error: use the button above (no referrer).</p>
+</main>
 <script>
-  // quick helper so you can paste the form URL once:
-  const FORM_URL = ""; // <- paste your Google Form embed URL here
-  if (FORM_URL) document.querySelector('iframe').src = FORM_URL;
+(function(){
+  const OK_KEY="vault_gate_ok", OK_VAL="1";
+  if(sessionStorage.getItem(OK_KEY)!==OK_VAL){ window.location.replace("/gate.html"); return; }
+  // Use /viewform not /edit
+  const FORM_ID="1knJWIS9x44N7GvPjog-U_iKUkJye__hIFtWXTt_CHJY";
+  document.getElementById("openForm").href=`https://docs.google.com/forms/d/${FORM_ID}/viewform`;
+  if(self!==top){ top.location=self.location.href; }
+})();
 </script>
+</body></html>
