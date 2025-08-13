@@ -1,52 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html><html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vault Access Gate</title>
-    <style>
-        body {
-            background-color: black;
-            color: #00ffea;
-            font-family: monospace;
-            text-align: center;
-            padding: 50px;
-        }
-        .glitch {
-            font-size: 2rem;
-            animation: glitch 1s infinite;
-        }
-        @keyframes glitch {
-            0% { text-shadow: 2px 0 red; }
-            20% { text-shadow: -2px 0 blue; }
-            40% { text-shadow: 2px 2px green; }
-            60% { text-shadow: -2px -2px yellow; }
-            80% { text-shadow: 2px 0 purple; }
-            100% { text-shadow: -2px 0 cyan; }
-        }
-        input {
-            margin-top: 20px;
-            padding: 10px;
-            background: black;
-            color: #00ffea;
-            border: 1px solid #00ffea;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Vault — Gate</title>
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <style>
+    :root{--bg:#0a0a0a;--fg:#e6e6e6;--muted:#888;--accent:#18ffd8;--danger:#ff4d4d}
+    *{box-sizing:border-box} html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:grid;place-items:center}
+    .card{width:min(92vw,460px);background:#0f0f0f;border:1px solid #1e1e1e;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+    .logo{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+    .logo h1{margin:0;font-size:20px;letter-spacing:.6px}
+    .muted{color:var(--muted);font-size:14px}
+    label{display:block;margin:18px 0 8px;font-weight:600}
+    input[type="password"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #2a2a2a;background:#111;color:var(--fg);outline:none}
+    input[type="password"]:focus{border-color:#2dd4bf}
+    button{margin-top:14px;width:100%;padding:12px 14px;border-radius:12px;border:none;color:#051311;background:linear-gradient(135deg,#22e3c8,#18ffd8);font-weight:700;cursor:pointer}
+    .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .err{color:var(--danger);font-size:14px;min-height:18px;margin-top:10px}
+    .glitch{position:relative;display:inline-block;font-weight:800;letter-spacing:.8px}
+    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;clip-path:inset(0 0 0 0)}
+    .glitch::before{transform:translate(1px,0);text-shadow:-1px 0 #f0f;animation:g1 2.5s infinite linear alternate}
+    .glitch::after{transform:translate(-1px,0);text-shadow:1px 0 #0ff;animation:g2 3s infinite linear alternate}
+    @keyframes g1{0%{clip-path:inset(0 0 90% 0)}20%{clip-path:inset(0)}40%{clip-path:inset(80% 0 0 0)}60%{clip-path:inset(10% 0 85% 0)}80%{clip-path:inset(0)}100%{clip-path:inset(85% 0 5% 0)}}
+    @keyframes g2{0%{clip-path:inset(85% 0 5% 0)}25%{clip-path:inset(0)}50%{clip-path:inset(5% 0 85% 0)}75%{clip-path:inset(0)}100%{clip-path:inset(0 0 90% 0)}}
+    .footer{margin-top:18px;text-align:center;color:#6a6a6a;font-size:12px}
+  </style>
 </head>
 <body>
-    <h1 class="glitch">ENTER PHRASE TO ACCESS THE VAULT</h1>
-    <input id="phraseInput" placeholder="Type Access Phrase" onkeypress="checkEnter(event)">
-    <script>
-        function checkEnter(event) {
-            if (event.key === 'Enter') {
-                let phrase = document.getElementById('phraseInput').value;
-                if (phrase.toLowerCase() === 'truthbot') {
-                    window.location.href = 'home.html';
-                } else {
-                    alert('ACCESS DENIED — Incorrect phrase.');
-                }
-            }
+  <main class="card" aria-labelledby="vtitle">
+    <div class="logo">
+      <h1 id="vtitle" class="glitch" data-text="TRUTHBOT ZERO">TRUTHBOT ZERO</h1>
+    </div>
+    <div class="muted">The Vault • Entry Gate</div>
+    <form id="gateForm" novalidate>
+      <label for="pass">Gate Code</label>
+      <input id="pass" name="pass" type="password" inputmode="text" autocomplete="current-password" placeholder="Enter gate code" aria-describedby="err" />
+      <div class="row">
+        <button id="enterBtn" type="submit">Enter</button>
+      </div>
+      <div id="err" class="err" role="alert" aria-live="polite"></div>
+    </form>
+    <div class="footer">Access requires a valid gate code. No code, no entry.</div>
+  </main>
+  <script>
+  (function () {
+    // ===== Config =====
+    const HASH_HEX = "187cacc7a60b265875c6dcfdfe93f40b4b6d313080e1b29ad788285b17cc9d68"; // sha256("MacG51718!xR$92")
+    const OK_KEY = "vault_gate_ok";
+    const OK_VAL = "1";
+    const MAX_ATTEMPTS = 6;
+    const LOCK_MINUTES = 20;
+
+    // ===== State (sessionStorage) =====
+    const S = window.sessionStorage;
+    const K_ATT = "vault_gate_attempts";
+    const K_LOCK = "vault_gate_lock_until";
+    const $ = (id)=>document.getElementById(id);
+    const passEl = $("pass");
+    const form = $("gateForm");
+    const err = $("err");
+
+    // Frame-buster
+    if (self !== top) { top.location = self.location.href; }
+
+    // Already passed?
+    if (S.getItem(OK_KEY) === OK_VAL) { safeNav("/join.html"); return; }
+
+    const lockedUntil = parseInt(S.getItem(K_LOCK)||"0",10);
+    if (lockedUntil && Date.now() < lockedUntil) {
+      const mins = Math.ceil((lockedUntil - Date.now())/60000);
+      showErr(`Locked due to repeated failures. Try again in ~${mins} minute(s).`);
+      passEl.disabled = true; $("enterBtn").disabled = true; return;
+    }
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault(); clearErr();
+      const att = parseInt(S.getItem(K_ATT)||"0",10);
+      if (att >= MAX_ATTEMPTS) { lockOut(); return; }
+      const val = (passEl.value || "").trim();
+      if (!val) return showErr("Enter the gate code.");
+      try {
+        const ok = await matchesHash(val, HASH_HEX);
+        if (!ok) {
+          const next = att + 1;
+          S.setItem(K_ATT, String(next)); // ✅ bug fixed
+          if (next >= MAX_ATTEMPTS) { lockOut(); }
+          else { showErr(`Invalid code. Attempts left: ${MAX_ATTEMPTS - next}.`); }
+          return;
         }
-    </script>
+        // success
+        S.removeItem(K_ATT); S.removeItem(K_LOCK);
+        S.setItem(OK_KEY, OK_VAL);
+        passEl.value = "";
+        safeNav("/join.html");
+      } catch {
+        showErr("Local crypto check failed. Try again.");
+      }
+    });
+
+    function showErr(m){ err.textContent = m; }
+    function clearErr(){ err.textContent = ""; }
+    function lockOut(){
+      const until = Date.now() + LOCK_MINUTES*60000;
+      S.setItem(K_LOCK, String(until));
+      passEl.disabled = true; $("enterBtn").disabled = true;
+      showErr(`Too many failures. Locked for ${LOCK_MINUTES} minutes.`);
+    }
+    function safeNav(path){
+      if (!/^\/[a-z0-9_\-\/\.]+$/i.test(path)) path = "/join.html";
+      window.location.href = path;
+    }
+    async function matchesHash(plain, hex){
+      const enc = new TextEncoder();
+      const data = enc.encode(plain);
+      const digest = await crypto.subtle.digest("SHA-256", data);
+      const out = Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
+      return out === hex;
+    }
+  })();
+  </script>
 </body>
 </html>
