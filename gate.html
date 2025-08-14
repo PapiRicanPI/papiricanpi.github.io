@@ -1,127 +1,68 @@
-<!doctype html><html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Vault — Gate</title>
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta name="referrer" content="no-referrer" />
-  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <style>
-    :root{--bg:#0a0a0a;--fg:#e6e6e6;--muted:#888;--accent:#18ffd8;--danger:#ff4d4d}
-    *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:grid;place-items:center}
-    .card{width:min(92vw,460px);background:#0f0f0f;border:1px solid #1e1e1e;border-radius:16px;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
-    .logo{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-    .logo h1{margin:0;font-size:20px;letter-spacing:.6px}
-    .muted{color:var(--muted);font-size:14px}
-    label{display:block;margin:18px 0 8px;font-weight:600}
-    input[type="password"]{width:100%;padding:12px 14px;border-radius:10px;border:1px solid #2a2a2a;background:#111;color:var(--fg);outline:none}
-    input[type="password"]:focus{border-color:#2dd4bf}
-    button{margin-top:14px;width:100%;padding:12px 14px;border-radius:12px;border:none;color:#051311;background:linear-gradient(135deg,#22e3c8,#18ffd8);font-weight:700;cursor:pointer}
-    .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .err{color:var(--danger);font-size:14px;min-height:18px;margin-top:10px}
-    .glitch{position:relative;display:inline-block;font-weight:800;letter-spacing:.8px}
-    .glitch::before,.glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;clip-path:inset(0 0 0 0)}
-    .glitch::before{transform:translate(1px,0);text-shadow:-1px 0 #f0f;animation:g1 2.5s infinite linear alternate}
-    .glitch::after{transform:translate(-1px,0);text-shadow:1px 0 #0ff;animation:g2 3s infinite linear alternate}
-    @keyframes g1{0%{clip-path:inset(0 0 90% 0)}20%{clip-path:inset(0)}40%{clip-path:inset(80% 0 0 0)}60%{clip-path:inset(10% 0 85% 0)}80%{clip-path:inset(0)}100%{clip-path:inset(85% 0 5% 0)}}
-    @keyframes g2{0%{clip-path:inset(85% 0 5% 0)}25%{clip-path:inset(0)}50%{clip-path:inset(5% 0 85% 0)}75%{clip-path:inset(0)}100%{clip-path:inset(0 0 90% 0)}}
-    .footer{margin-top:18px;text-align:center;color:#6a6a6a;font-size:12px}
-  </style>
-</head>
-<body>
-  <main class="card" aria-labelledby="vtitle">
-    <div class="logo">
-      <h1 id="vtitle" class="glitch" data-text="TRUTHBOT ZERO">TRUTHBOT ZERO</h1>
-    </div>
-    <div class="muted">The Vault • Entry Gate</div>
-    <form id="gateForm" novalidate>
-      <label for="pass">Gate Code</label>
-      <input id="pass" name="pass" type="password" inputmode="text" autocomplete="current-password" placeholder="Enter gate code" aria-describedby="err" />
-      <div class="row">
-        <button id="enterBtn" type="submit">Enter</button>
-      </div>
-      <div id="err" class="err" role="alert" aria-live="polite"></div>
-    </form>
-    <div class="footer">Access requires a valid gate code. No code, no entry.</div>
-  </main>
-  <script>
-  (function () {
-    // ===== Config =====
-    const HASH_HEX = "62fda6aa8b6d833557265d5bcf1a9bd21f30e1cc089ffe466cdd42de03fffd4d"; // sha256("MacG51718!$_vR$!")
-    const OK_KEY = "vault_gate_ok";
-    const OK_VAL = "1";
-    const MAX_ATTEMPTS = 6;
-    const LOCK_MINUTES = 20;
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8" />
+<title>The Vault — Gate</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<meta name="referrer" content="no-referrer" />
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+<meta http-equiv="Pragma" content="no-cache" />
+<style>
+:root{color-scheme:dark;--bg:#0b0b10;--card:#11131a;--fg:#e6e9f2;--muted:#8991a8;--accent:#2f81ff;--accent2:#7a5cff;--border:#202334;--danger:#ff4d4d}
+*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;background:var(--bg);color:var(--fg)}
+.wrap{min-height:100%;display:flex;flex-direction:column}.container{max-width:980px;width:100%;margin:0 auto;padding:28px 16px}
+.hero{display:grid;place-items:center;text-align:center;gap:16px;margin:20px 0 10px}
+.face{width:160px;height:160px;border-radius:24px;background:#0f1322 url('/assets/truthbot-face.png') center/92% no-repeat;box-shadow:0 12px 40px rgba(0,0,0,.45),0 0 0 1px var(--border) inset;position:relative;overflow:hidden}
+.scan:before,.scan:after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(47,129,255,.7),transparent);animation:scan 2.4s linear infinite}
+.scan:after{animation-delay:1.2s}@keyframes scan{0%{top:0}100%{top:100%}}
+.title{font-weight:800;letter-spacing:.5px;font-size:28px;margin:8px 0 0}
+.glitch{position:relative;display:inline-block}.glitch:before,.glitch:after{content:attr(data-text);position:absolute;left:0;top:0;opacity:.6;filter:blur(.3px)}
+.glitch:before{transform:translateX(-1px);color:#7a5cff}.glitch:after{transform:translateX(1px);color:#2f81ff}
+.sub{color:var(--muted);margin:4px 0 0}
+.card{max-width:560px;margin:18px auto;padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,.45)}
+label{display:block;margin:0 0 8px;font-weight:700}
+input[type=password]{width:100%;padding:12px 14px;border-radius:12px;background:#0b0b10;color:var(--fg);border:1px solid #2a2e42;outline:none}
+input[type=password]:focus{border-color:#3041ff}.row{display:flex;gap:10px;margin-top:10px}
+.btn{appearance:none;cursor:pointer;width:100%;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;text-decoration:none;text-align:center}
+.err{color:var(--danger);margin-top:8px;min-height:18px}.muted{color:var(--muted);font-size:13px;margin-top:10px}
+#unlocked .cta{display:inline-block;margin-top:10px;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:var(--accent);color:#fff;font-weight:800;text-decoration:none}
+</style></head><body>
+<div class="wrap"><div class="container">
 
-    // ===== State (sessionStorage) =====
-    const S = window.sessionStorage;
-    const K_ATT = "vault_gate_attempts";
-    const K_LOCK = "vault_gate_lock_until";
-    const $ = (id)=>document.getElementById(id);
-    const passEl = $("pass");
-    const form = $("gateForm");
-    const err = $("err");
+<section class="hero">
+  <div class="face scan" aria-hidden="true"></div>
+  <h1 class="title"><span class="glitch" data-text="THE VAULT">THE VAULT</span></h1>
+  <p class="sub">Expose poverty pimps. Verify receipts. Protect whistleblowers.</p>
+</section>
 
-    // Frame-buster
-    if (self !== top) { top.location = self.location.href; }
+<section class="card" id="vault-gate" aria-label="Gate">
+  <div id="locked">
+    <label for="code">Enter gate code</label>
+    <input id="code" type="password" placeholder="••••••••" autocomplete="current-password" />
+    <div class="row"><button class="btn" onclick="checkCode()">Enter</button></div>
+    <div id="err" class="err"></div>
+    <p class="muted">Form link reveals only after a correct code. Discord invite is QR-only.</p>
+  </div>
+  <div id="unlocked" style="display:none">
+    <h3 style="margin:0 0 6px">Access granted</h3>
+    <p class="muted" style="margin-top:0">Proceed to vetting.</p>
+    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSd09UgirO0Gk5jlpQNJL-P3MN8FX-Bq-4VUB9XZb0J8ptAYhA/viewform" target="_blank" rel="noopener">Request Access (Form)</a>
+  </div>
+</section>
 
-    // Already passed?
-    if (S.getItem(OK_KEY) === OK_VAL) { safeNav("/join.html"); return; }
-
-    const lockedUntil = parseInt(S.getItem(K_LOCK)||"0",10);
-    if (lockedUntil && Date.now() < lockedUntil) {
-      const mins = Math.ceil((lockedUntil - Date.now())/60000);
-      showErr(`Locked due to repeated failures. Try again in ~${mins} minute(s).`);
-      passEl.disabled = true; $("enterBtn").disabled = true; return;
-    }
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault(); clearErr();
-      const att = parseInt(S.getItem(K_ATT)||"0",10);
-      if (att >= MAX_ATTEMPTS) { lockOut(); return; }
-      const val = (passEl.value || "").trim();
-      if (!val) return showErr("Enter the gate code.");
-      try {
-        const ok = await matchesHash(val, HASH_HEX);
-        if (!ok) {
-          const next = att + 1;
-          S.setItem(K_ATT, String(next)); // ✅ bug fixed
-          if (next >= MAX_ATTEMPTS) { lockOut(); }
-          else { showErr(`Invalid code. Attempts left: ${MAX_ATTEMPTS - next}.`); }
-          return;
-        }
-        // success
-        S.removeItem(K_ATT); S.removeItem(K_LOCK);
-        S.setItem(OK_KEY, OK_VAL);
-        passEl.value = "";
-        safeNav("/join.html");
-      } catch {
-        showErr("Local crypto check failed. Try again.");
-      }
-    });
-
-    function showErr(m){ err.textContent = m; }
-    function clearErr(){ err.textContent = ""; }
-    function lockOut(){
-      const until = Date.now() + LOCK_MINUTES*60000;
-      S.setItem(K_LOCK, String(until));
-      passEl.disabled = true; $("enterBtn").disabled = true;
-      showErr(`Too many failures. Locked for ${LOCK_MINUTES} minutes.`);
-    }
-    function safeNav(path){
-      if (!/^\/[a-z0-9_\-\/\.]+$/i.test(path)) path = "/join.html";
-      window.location.href = path;
-    }
-    async function matchesHash(plain, hex){
-      const enc = new TextEncoder();
-      const data = enc.encode(plain);
-      const digest = await crypto.subtle.digest("SHA-256", data);
-      const out = Array.from(new Uint8Array(digest)).map(b=>b.toString(16).padStart(2,"0")).join("");
-      return out === hex;
-    }
-  })();
-  </script>
-</body>
-</html>
+</div></div>
+<script>
+const EXPECTED_HASH="62fda6aa8b6d833557265d5bcf1a9bd21f30e1cc089ffe466cdd42de03fffd4d";
+async function checkCode(){
+  const box=document.getElementById('code'); const val=box.value.trim();
+  if(!val){err("Enter the code.");return;}
+  const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(val));
+  const hex=[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
+  const ok=(hex===EXPECTED_HASH);
+  document.getElementById('locked').style.display=ok?"none":"block";
+  document.getElementById('unlocked').style.display=ok?"block":"none";
+  err(ok?"":"Wrong code."); if(ok){box.value="";}
+}
+function err(m){document.getElementById('err').textContent=m||""}
+document.getElementById('code').addEventListener('keydown',e=>{if(e.key==="Enter")checkCode();});
+</script>
+</body></html>
