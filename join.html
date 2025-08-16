@@ -1,6 +1,61 @@
 <!doctype html>
 <html lang="en">
-<head>
+<style>
+  /* ===== Logo wrapper ===== */
+  .vault-logo-wrap{
+    position:relative;
+    display:inline-block;
+    line-height:0;
+    width:min(420px, 85vw);
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,.45));
+    border-radius:14px;
+    overflow:hidden;
+  }
+  .vault-logo{
+    width:100%;
+    height:auto;
+    display:block;
+    opacity:0;
+    animation: fadeIn .9s ease-out forwards, pulse 4s ease-in-out 1.8s infinite;
+  }
+  .shine{
+    pointer-events:none;
+    position:absolute; inset:0;
+    background: linear-gradient(115deg,
+      transparent 0%,
+      rgba(255,255,255,.08) 45%,
+      rgba(255,255,255,.35) 50%,
+      rgba(255,255,255,.08) 55%,
+      transparent 100%);
+    transform: translateX(-120%);
+    animation: sweep 2.4s ease-out .9s forwards, sweep 6s linear 4.2s infinite;
+    mix-blend-mode: screen;
+  }
+  .handle{
+    position:absolute; left:0; right:0; bottom:8px;
+    text-align:center;
+    font:600 16px/1 system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
+    color:#f0e7d6; letter-spacing:.6px;
+    text-shadow:
+      0 1px 0 rgba(0,0,0,.35),
+      0 2px 6px rgba(0,0,0,.55);
+  }
+  .glitch::before,
+  .glitch::after{
+    content:"";
+    position:absolute; inset:0;
+    background: url('logo.png') center/100% auto no-repeat;
+    opacity:.12; mix-blend-mode:screen;
+  }
+  .glitch::before{ animation: g1 2.2s steps(12) infinite; }
+  .glitch::after{ animation: g2 1.9s steps(14) infinite; }
+  @keyframes fadeIn{0%{opacity:0;transform:translateY(6px) scale(1.01)}to{opacity:1;transform:none}}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.012)}}
+  @keyframes sweep{0%{transform:translateX(-130%)}100%{transform:translateX(130%)}}
+  @keyframes g1{0%{clip-path:inset(0 0 88% 0)}20%{clip-path:inset(20% 0 60% 0)}40%{clip-path:inset(40% 0 40% 0)}60%{clip-path:inset(60% 0 20% 0)}80%{clip-path:inset(80% 0 0 0)}100%{clip-path:inset(0 0 88% 0)}}
+  @keyframes g2{0%{clip-path:inset(10% 0 70% 0)}25%{clip-path:inset(35% 0 45% 0)}50%{clip-path:inset(55% 0 25% 0)}75%{clip-path:inset(75% 0 5% 0)}100%{clip-path:inset(10% 0 70% 0)}}
+</style>
+  <head>
   <meta charset="utf-8" />
   <title>Join — The Vault</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
