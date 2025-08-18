@@ -1,80 +1,83 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>THE VAULT — Beta Intake</title>
-<style>
-  :root{--bg:#0b0d12;--card:#11131a;--text:#dbe1ff;--muted:#8f9ad9;--line:#212636;--accent:#4f6bff;}
-  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-  .wrap{max-width:880px;margin:36px auto;padding:0 16px}
-  h1{font-weight:800;letter-spacing:.3px;margin:6px 0 8px}
-  p.sub{color:var(--muted);margin:0 0 18px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-  label{display:block;margin:12px 0 6px;font-weight:600}
-  input,select,textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid #2b3150;background:#0f1322;color:#e6e9ff;font-size:16px;outline:none}
-  textarea{min-height:120px}
-  button{margin-top:14px;padding:14px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer;background:linear-gradient(90deg,#4f6bff,#7a5cff);color:white}
-  .disclaimer{color:#9aa3d1;font-size:13px;margin-top:10px}
-  a{color:#9fb0ff;text-decoration:none} a:hover{text-decoration:underline}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>THE VAULT — Beta Intake</title>
+  <style>
+    :root{--bg:#0b0d12;--card:#11131a;--text:#dbe1ff;--muted:#8f9ad9;--line:#212636;--accent:#4f6bff}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:880px;margin:36px auto;padding:0 16px}
+    h1{font-weight:800;letter-spacing:.3px;margin:6px 0 8px}
+    p.sub{color:var(--muted);margin:0 0 18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+    label{display:block;margin:12px 0 6px;font-weight:600}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #2b3150;background:#0f1322;color:#e6e9ff;font-size:16px;outline:none}
+    textarea{min-height:120px}
+    button{margin-top:14px;padding:14px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer;background:linear-gradient(90deg,#4f6bff,#7a5cff);color:white}
+    .disclaimer{color:#9aa3d1;font-size:13px;margin-top:10px}
+    a{color:#9fb0ff;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>THE VAULT — Beta Intake</h1>
-  <p class="sub">No Google login required. Submit your info; you’ll get a copy via email.</p>
+  <div class="wrap">
+    <h1>THE VAULT — Beta Intake</h1>
+    <p class="sub">No Google login required. Submit your info; you’ll get a copy via email.</p>
 
-  <form action="https://formsubmit.co/038ece8545016d5ed970957f7ba45d45" method="POST" class="card">
+    <!-- FormSubmit endpoint (tokenized) -->
+    <form action="https://formsubmit.co/038ece8545016d5ed970957f7ba45d45" method="POST" class="card">
+      <!-- Hidden controls -->
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_subject" value="NEW VAULT INTAKE" />
+      <input type="hidden" name="_next" value="https://povertypimpslayerthevault.tainorican2n.workers.dev/vault" />
+      <input type="text"   name="_honey" style="display:none" />
+      <input type="hidden" name="_autoresponse" value="Thanks for your VAULT intake submission. We received it. We will review and contact you if we need more receipts. — THE VAULT" />
+      <input type="hidden" name="_bcc" value="exposingpovertypimps.ops@gmail.com" />
 
-    <!-- FormSubmit options -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_subject" value="NEW VAULT INTAKE">
-    <input type="hidden" name="_next" value="https://povertypimpslayerthevault.tainorican2n.workers.dev/vault">
-    <input type="text" name="_honey" style="display:none">
-    <input type="hidden" name="_autoresponse" value="Thanks for your VAULT intake submission. We received it. We will review and contact you if we need more receipts. — THE VAULT">
-    
-    <label>Display name / Alias *</label>
-    <input type="text" name="Alias" required>
+      <!-- Visible fields -->
+      <label>Display name / Alias *</label>
+      <input type="text" name="Alias" required />
 
-    <label>Email *</label>
-    <input type="email" name="email" required>
+      <label>Email *</label>
+      <input type="email" name="email" required />
 
-    <label>Region *</label>
-    <select name="Region" required>
-      <option value="">Select…</option>
-      <option>Philippines</option>
-      <option>Puerto Rico</option>
-      <option>United States</option>
-      <option>Other</option>
-    </select>
+      <label>Region *</label>
+      <select name="Region" required>
+        <option value="">Select…</option>
+        <option>Philippines</option>
+        <option>Puerto Rico</option>
+        <option>United States</option>
+        <option>Other</option>
+      </select>
 
-    <label>Role (choose any) *</label>
-    <select name="Role" required>
-      <option value="">Select…</option>
-      <option>Whistleblower</option>
-      <option>Researcher</option>
-      <option>Supporter</option>
-      <option>Media</option>
-    </select>
+      <label>Role (choose any) *</label>
+      <select name="Role" required>
+        <option value="">Select…</option>
+        <option>Whistleblower</option>
+        <option>Researcher</option>
+        <option>Supporter</option>
+        <option>Media</option>
+      </select>
 
-    <label>Links to receipts / docs (URLs only) </label>
-    <textarea name="Links" placeholder="Paste URLs to files, posts, or archives…"></textarea>
+      <label>Links to receipts / docs (URLs only)</label>
+      <textarea name="Links" placeholder="Paste URLs to files, posts, or archives…"></textarea>
 
-    <label>Preferred contact (X/Telegram/Email)</label>
-    <input type="text" name="Contact">
+      <label>Preferred contact (X/Telegram/Email)</label>
+      <input type="text" name="Contact" />
 
-    <label>Agree to terms *</label>
-    <select name="Agree" required>
-      <option value="">Select…</option>
-      <option>I agree: private beta, no illegal content, no doxxing, no threats.</option>
-    </select>
+      <label>Agree to terms *</label>
+      <select name="Agree" required>
+        <option value="">Select…</option>
+        <option>I agree: private beta, no illegal content, no doxxing, no threats.</option>
+      </select>
 
-    <button type="submit">Submit</button>
-    <p class="disclaimer">We verify receipts and protect whistleblowers. Independent. No NGO. No corporate funding.</p>
-  </form>
+      <button type="submit">Submit</button>
+      <p class="disclaimer">We verify receipts and protect whistleblowers. Independent. No NGO. No corporate funding.</p>
+    </form>
 
-  <p><a href="https://povertypimpslayerthevault.tainorican2n.workers.dev/g">Back to Gate</a></p>
-</div>
+    <p><a href="https://povertypimpslayerthevault.tainorican2n.workers.dev/g">Back to Gate</a></p>
+  </div>
 </body>
 </html>
+
