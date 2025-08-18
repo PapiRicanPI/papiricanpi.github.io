@@ -1,0 +1,190 @@
+{
+  "main": {
+    "id": "45cbd3d35219ae17",
+    "type": "split",
+    "children": [
+      {
+        "id": "51725358c3e714bc",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "87ebe4966410f886",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ops_log_2025-08-18.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ops_log_2025-08-18"
+            }
+          },
+          {
+            "id": "f01c553d6187f2b2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "ops_log_2025-08-18.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "ops_log_2025-08-18"
+            }
+          }
+        ],
+        "currentTab": 1
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "109ddf9e5210548f",
+    "type": "split",
+    "children": [
+      {
+        "id": "c4d34f65644319fe",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "da4afc7635e3153e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "0b1faffd370bbbfd",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "f119cba135f9a726",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "5d22459944e3c4fc",
+    "type": "split",
+    "children": [
+      {
+        "id": "bf2fb36a2716c847",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "66e8184d68d8fa01",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "ops_log_2025-08-18.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for ops_log_2025-08-18"
+            }
+          },
+          {
+            "id": "e2c937e8f4d6c0de",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "ops_log_2025-08-18.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from ops_log_2025-08-18"
+            }
+          },
+          {
+            "id": "ea3630928b11f3d8",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "13c209ed77bda795",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "ops_log_2025-08-18.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of ops_log_2025-08-18"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "f01c553d6187f2b2",
+  "lastOpenFiles": [
+    "ops_log_2025-08-17.md"
+  ]
+}
