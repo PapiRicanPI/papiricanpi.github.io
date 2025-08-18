@@ -1,143 +1,85 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Vault – Gate</title>
-  <style>
-    /* ===== Logo wrapper ===== */
-    .vault-logo-wrap {
-      position: relative;
-      display: inline-block;
-      line-height: 0;
-      width: min(420px, 85vw);
-      filter: drop-shadow(0 8px 24px rgba(0,0,0,.45));
-      border-radius: 14px;
-      overflow: hidden;
-      margin: 40px auto;
-      text-align: center;
-    }
-    .vault-logo {
-      width: 100%;
-      height: auto;
-      display: block;
-      opacity: 0;
-      animation: fadeIn .9s ease-out forwards, pulse 4s ease-in-out 1.8s infinite;
-    }
-    .shine {
-      pointer-events: none;
-      position: absolute; inset: 0;
-      background: linear-gradient(115deg,
-        transparent 0%,
-        rgba(255,255,255,.08) 45%,
-        rgba(255,255,255,.25) 50%,
-        transparent 55%);
-      transform: translateX(-120%);
-      animation: shineMove 6s ease-in-out infinite;
-    }
-    .handle {
-      font-family: monospace, sans-serif;
-      font-size: 14px;
-      margin-top: 8px;
-      color: #bbb;
-      text-shadow: 0 0 6px rgba(0,0,0,.6);
-    }
-
-    /* Animations */
-    @keyframes fadeIn { to { opacity: 1; } }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.04); }
-    }
-    @keyframes shineMove {
-      0% { transform: translateX(-120%); }
-      40%,100% { transform: translateX(120%); }
-    }
-    .glitch.active { filter: hue-rotate(25deg) contrast(120%); }
-  </style>
-</head>
-<body>
-  <div class="vault-logo-wrap glitch">
-    <img src="logo.png" alt="Vault Logo" class="vault-logo">
-    <div class="shine"></div>
-    <div class="handle">@PovertyPimpSlay</div>
-  </div>
-
-  <!-- your gate form follows -->
-  <div id="gate">
-    <h1>THE VAULT</h1>
-    <p>Expose poverty pimps. Verify receipts. Protect whistleblowers.</p>
-    <form>
-      <label for="code">Enter gate code</label>
-      <input type="password" id="code" name="code" required>
-      <button type="submit">Enter</button>
-    </form>
-    <p class="note">Form link reveals only after a correct code. Discord invite is QR-only.</p>
-  </div>
-
-  <script>
-    // Trigger glitch randomly for realism
-    setInterval(()=>{
-      document.querySelector('.glitch')?.classList.toggle('active');
-    }, 3200);
-  </script>
-</body>
-</html>
-  <head>
   <meta charset="utf-8" />
-  <title>Join — The Vault</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="robots" content="noindex,nofollow" />
-  <meta name="referrer" content="no-referrer" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>THE VAULT — Beta Intake</title>
   <style>
-    :root { color-scheme: dark; --bg:#0b0b10; --card:#11131a; --text:#e7e7ea; --muted:#8f95aa; --accent:#2f81ff; --border:#222638; }
-    html,body{height:100%;margin:0;font-family:system-ui,Inter,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:32px}
-    .card{max-width:560px;width:100%;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:28px 24px;box-shadow:0 10px 40px rgba(0,0,0,.45)}
-    .brand{display:flex;gap:12px;align-items:center}
-    .mark{width:56px;height:56px;border-radius:12px;background:#222a44 url('/logo.png') center/70% no-repeat}
-    h1{margin:6px 0 2px;font-size:22px}
-    p{margin:0;color:#b9bed0}
-    ul{margin:14px 0 0;padding-left:20px;color:#a9aec0}
-    .cta{margin-top:20px;display:block;text-align:center;text-decoration:none;font-weight:700;padding:14px 18px;border-radius:12px;background:var(--accent);color:#fff;border:1px solid #3b6aff}
-    .cta:hover{filter:brightness(1.06)}
-    .fine{margin-top:10px;font-size:12px;color:var(--muted)}
-    .wm{position:fixed;right:14px;bottom:14px;opacity:.22;width:72px;height:72px;background:url('/assets/truthbot-face.png') center/cover no-repeat;border-radius:12px;filter:grayscale(30%);pointer-events:none;display:none}
-    .wm.on{display:block}
+    :root{--bg:#0b0d12;--card:#11131a;--text:#dbe1ff;--muted:#8f9ad9;--line:#212636;--accent:#4f6bff}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:880px;margin:36px auto;padding:0 16px}
+    h1{font-weight:800;letter-spacing:.3px;margin:6px 0 8px}
+    p.sub{color:var(--muted);margin:0 0 18px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
+    label{display:block;margin:12px 0 6px;font-weight:600}
+    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #2b3150;background:#0f1322;color:#e6e9ff;font-size:16px;outline:none}
+    textarea{min-height:120px}
+    button{margin-top:14px;padding:14px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer;background:linear-gradient(90deg,#4f6bff,#7a5cff);color:white}
+    .disclaimer{color:#9aa3d1;font-size:13px;margin-top:10px}
+    a{color:#9fb0ff;text-decoration:none} a:hover{text-decoration:underline}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <main class="card" role="main" aria-label="Discord Join">
-      <div class="brand">
-        <div class="mark" aria-hidden="true"></div>
-        <div>
-          <h1>Private Discord Entry</h1>
-          <p>Join the lobby. No names, no clout — just facts.</p>
-        </div>
-      </div>
+    <h1>THE VAULT — Beta Intake</h1>
+    <p class="sub">No Google login required. Submit your info; you’ll get a copy via email.</p>
 
-      <ul>
-        <li>Respect anonymity — zero doxxing.</li>
-        <li>Evidence only — no rumor bait.</li>
-        <li>Nothing leaves #welcome until vetted.</li>
-      </ul>
+    <!-- FormSubmit endpoint (tokenized) -->
+    <form action="https://formsubmit.co/038ece8545016d5ed970957f7ba45d45" method="POST" class="card">
+      <!-- Hidden controls -->
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+      <input type="hidden" name="_subject" value="NEW VAULT INTAKE" />
+      <input type="hidden" name="_next" value="https://povertypimpslayerthevault.tainorican2n.workers.dev/vault" />
+      <input type="text"   name="_honey" style="display:none" />
+      <input type="hidden" name="_autoresponse"
+             value="Thanks for your VAULT intake submission. We received it. We will review and contact you if we need more receipts. — THE VAULT" />
+      <!-- send a visible copy to ops (more reliable than BCC) -->
+      <input type="hidden" name="_cc" value="exposingpovertypimps.ops@gmail.com" />
 
-      <!-- your Bitly tracker (kept editable server-side) -->
-      <a class="cta" href="https://discord.gg/xXgreH7pKK" target="_blank" rel="noreferrer noopener">Enter Discord</a>
+      <!-- Visible fields -->
+      <label>Display name / Alias *</label>
+      <input type="text" name="Alias" required />
 
-      <p class="fine">Tip: use a throwaway handle. If the button doesn’t open, try a normal browser (not in-app).</p>
-    </main>
+      <label>Email *</label>
+      <input type="email" name="email" required />
+
+      <label>Region *</label>
+      <select name="Region" required>
+        <option value="">Select…</option>
+        <option>Philippines</option>
+        <option>Puerto Rico</option>
+        <option>United States</option>
+        <option>Other</option>
+      </select>
+
+      <label>Role (choose any) *</label>
+      <select name="Role" required>
+        <option value="">Select…</option>
+        <option>Whistleblower</option>
+        <option>Researcher</option>
+        <option>Supporter</option>
+        <option>Media</option>
+      </select>
+
+      <label>Links to receipts / docs (URLs only)</label>
+      <textarea name="Links" placeholder="Paste URLs to files, posts, or archives…"></textarea>
+
+      <label>Preferred contact (X/Telegram/Email)</label>
+      <input type="text" name="Contact" />
+
+      <label>Agree to terms *</label>
+      <select name="Agree" required>
+        <option value="">Select…</option>
+        <option>I agree: private beta, no illegal content, no doxxing, no threats.</option>
+      </select>
+
+      <button type="submit">Submit</button>
+      <p class="disclaimer">We verify receipts and protect whistleblowers. Independent. No NGO. No corporate funding.</p>
+    </form>
+
+    <p><a href="https://povertypimpslayerthevault.tainorican2n.workers.dev/g">Back to Gate</a></p>
   </div>
-
-  <!-- optional tiny watermark: add ?skin=lite to show -->
-  <div id="wm" class="wm" aria-hidden="true"></div>
-  <script>
-    if (new URLSearchParams(location.search).get('skin') === 'lite') {
-      document.getElementById('wm').classList.add('on');
-    }
-  </script>
 </body>
 </html>
 
