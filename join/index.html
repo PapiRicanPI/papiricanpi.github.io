@@ -32,8 +32,10 @@
       <input type="hidden" name="_subject" value="NEW VAULT INTAKE" />
       <input type="hidden" name="_next" value="https://povertypimpslayerthevault.tainorican2n.workers.dev/vault" />
       <input type="text"   name="_honey" style="display:none" />
-      <input type="hidden" name="_autoresponse" value="Thanks for your VAULT intake submission. We received it. We will review and contact you if we need more receipts. — THE VAULT" />
-      <input type="hidden" name="_bcc" value="exposingpovertypimps.ops@gmail.com" />
+      <input type="hidden" name="_autoresponse"
+             value="Thanks for your VAULT intake submission. We received it. We will review and contact you if we need more receipts. — THE VAULT" />
+      <!-- send a visible copy to ops (more reliable than BCC) -->
+      <input type="hidden" name="_cc" value="exposingpovertypimps.ops@gmail.com" />
 
       <!-- Visible fields -->
       <label>Display name / Alias *</label>
@@ -80,4 +82,3 @@
   </div>
 </body>
 </html>
-
