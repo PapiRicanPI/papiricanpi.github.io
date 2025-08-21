@@ -55,12 +55,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "🗝️ OpenVault Log — 2025-08-20.md",
+                "file": "ops_log_2025-08-16.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "🗝️ OpenVault Log — 2025-08-20"
+              "title": "ops_log_2025-08-16"
             }
           }
         ],
@@ -214,15 +214,18 @@
   },
   "active": "ec88f66d6794b276",
   "lastOpenFiles": [
+    "ops_log_2025-08-15.md",
+    "ops_log_2025-08-14.md",
+    "VaultOps_Shift_Log_2025-08-21_06_21_26.md",
     "ops_log_2025-08-19.md",
+    "ops_log_2025-08-18.md",
+    "military.md",
+    "🗝️ OpenVault Log — 2025-08-20.md",
     "ops_log_2025-08-21.md",
     "ops_log_2025-08-20.md",
-    "ops_log_2025-08-18.md",
     "ops_log_2025-08-16.md",
     "ops_log_2025-08-17.md",
-    "VaultOps_Shift_Log_2025-08-21_06_21_26.md",
     "Untitled.md",
-    "🗝️ OpenVault Log — 2025-08-20.md",
     "webhooks_backup.txt"
   ]
 }
