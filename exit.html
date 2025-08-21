@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Exit The Vault</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #000814;
+      --fg: #e0e8f9;
+      --muted: #8b9dbf;
+      --accent: #60a5fa;
+      --danger: #f87171;
+    }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-box {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 40px;
+      border-radius: 12px;
+      max-width: 460px;
+      width: 100%;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+      text-align: center;
+    }
+    h1 { font-size: 24px; margin-bottom: 20px; }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input[type="email"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #334155;
+      background: #1e293b;
+      color: var(--fg);
+    }
+    .checkbox {
+      margin-top: 10px;
+      text-align: left;
+    }
+    .checkbox label {
+      font-size: 14px;
+      font-weight: normal;
+    }
+    button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      font-weight: bold;
+      color: white;
+      background-color: var(--accent);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <form class="form-box" onsubmit="return handleExit();">
+    <h1>Exit The Vault</h1>
+    <label for="email">Enter your email</label>
+    <input id="email" name="email" type="email" required placeholder="you@example.com" />
+    <div class="checkbox">
+      <label><input type="checkbox" required /> I acknowledge this content is for educational & research use only.</label>
+    </div>
+    <div class="checkbox">
+      <label><input type="checkbox" required /> I release TruthBot-Zero and staff from any legal liability.</label>
+    </div>
+    <button type="submit">Confirm & Exit</button>
+  </form>
+  <script>
+    function handleExit() {
+      window.location.href = "/exit-confirmed.html";
+      return false;
+    }
+  </script>
+</body>
+</html>
