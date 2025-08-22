@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vault Leads Map</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<style>html,body,#map{height:100%;margin:0} .popup{font:14px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif}</style>
+</head>
+<body>
+<div id="map"></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+  const map = L.map('map').setView([14.5995, 120.9842], 6);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; OpenStreetMap contributors'}).addTo(map);
+
+  fetch('leads.geojson').then(r=>r.json()).then(geo=>{
+    const layer = L.geoJSON(geo, {
+      onEachFeature: (feat, layer) => {
+        const p = feat.properties || {};
+        const srcs = (p.sources||[]).map(s=>`<li><a href="${s}" target="_blank" rel="noopener">${s}</a></li>`).join('');
+        layer.bindPopup(`<div class="popup"><strong>${p.name||'Unknown'}</strong><br>
+          ${p.category||''} — ${p.city||''}, ${p.region||''}, ${p.country||''}
+          <br><em>${p.notes||''}</em><br>
+          <ul>${srcs}</ul></div>`);
+      }
+    }).addTo(map);
+    try{ map.fitBounds(layer.getBounds(), {padding:[20,20]}); }catch(e){}
+  });
+</script>
+</body>
+</html>

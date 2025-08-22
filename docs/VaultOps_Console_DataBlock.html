@@ -1,0 +1,32 @@
+<!-- ### DATA & SHEETS (drop-in block) ### -->
+<div class="card">
+  <h3>Data & Sheets</h3>
+  <p class="hint">Open your live Google Sheets (login required). Edit <code>assets/js/data-links.js</code> to wire buttons.</p>
+  <div class="row">
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnSHEETS_HOME">📚 Sheets Home</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnFORM_RESPONSES">🧾 Form Responses</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnVETTING_RESPONSES">🛡️ Vetting Responses</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnEVIDENCE_RESPONSES">📦 Evidence Responses</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnAPPROVALS">✅ Approvals Tracker</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnMASTERLIST">📓 Masterlist</a>
+    <a class="btn neutral" target="_blank" rel="noopener" id="cbtnEXPOSED">🗂️ Exposed Names Index</a>
+  </div>
+</div>
+<script src="assets/js/data-links.js"></script>
+<script>
+  (function(){
+    const L = window.VAULT_SHEETS || {};
+    const set = (id, url) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (url) el.href = url; else el.addEventListener('click', e => { e.preventDefault(); alert('Configure this link in assets/js/data-links.js'); });
+    };
+    set('cbtnSHEETS_HOME', L.SHEETS_HOME_URL);
+    set('cbtnFORM_RESPONSES', L.FORM_RESPONSES_URL);
+    set('cbtnVETTING_RESPONSES', L.VETTING_RESPONSES_URL);
+    set('cbtnEVIDENCE_RESPONSES', L.EVIDENCE_RESPONSES_URL);
+    set('cbtnAPPROVALS', L.APPROVALS_TRACKER_URL);
+    set('cbtnMASTERLIST', L.MASTERLIST_URL);
+    set('cbtnEXPOSED', L.EXPOSED_INDEX_SHEET_URL || L.EXPOSED_INDEX_CSV_URL);
+  })();
+</script>

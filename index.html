@@ -1,156 +1,67 @@
-<script>
-  if (!sessionStorage.getItem("vault_access")) {
-    window.location.href = "gate.html";
-  }
-</script>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>THE VAULT — REVELATION IS COMING</title>
-<meta http-equiv="Cache-Control" content="no-store" />
-<style>
-  :root { --bg:#0b0b0b; --fg:#ffe74a; --muted:#bfbfbf; }
-  * { box-sizing:border-box }
-  html,body { height:100%; margin:0; background:var(--bg); color:#fff; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial }
-  .wrap { position:relative; height:100%; display:flex; align-items:center; justify-content:center; overflow:hidden }
-  .scan {
-    position:absolute; inset:0; pointer-events:none;
-    background: repeating-linear-gradient(to bottom, rgba(255,255,255,.06), rgba(255,255,255,.06) 1px, transparent 2px, transparent 4px);
-    mix-blend-mode:overlay; animation: scan 6s linear infinite;
-  }
-  @keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
-
-  .glow { filter: drop-shadow(0 0 18px rgba(255,231,74,.35)); }
-  .logo { width:220px; height:auto; opacity:.98; animation: pop .9s cubic-bezier(.2,.9,.2,1) both }
-  @keyframes pop { 0%{ transform:scale(.8); opacity:0 } 100%{ transform:scale(1); opacity:1 } }
-
-  .title { margin:22px 0 8px; font-weight:800; letter-spacing:2px; text-align:center; color:var(--fg); }
-  .subtitle { margin:0; text-align:center; color:var(--muted); opacity:.9 }
-
-  .glitch {
-    position:relative; display:inline-block; font-size:clamp(22px,3vw,28px); font-weight:700; letter-spacing:.15em; color:var(--fg);
-  }
-  .glitch::before, .glitch::after {
-    content:attr(data-text); position:absolute; left:0; top:0; clip-path:inset(0 0 0 0);
-  }
-  .glitch::before { animation: glitch1 2s infinite linear alternate-reverse; color:#ff3b3b }
-  .glitch::after  { animation: glitch2 1.7s infinite linear alternate-reverse; color:#45a3ff }
-  @keyframes glitch1 {
-    0% { transform:translate(0,0) }
-    20% { transform:translate(-2px,-1px) }
-    40% { transform:translate(2px,1px) }
-    60% { transform:translate(-1px,2px) }
-    80% { transform:translate(1px,-2px) }
-    100% { transform:translate(0,0) }
-  }
-  @keyframes glitch2 {
-    0% { transform:translate(0,0) }
-    25% { transform:translate(1px,-1px) }
-    50% { transform:translate(-1px,1px) }
-    75% { transform:translate(2px,-2px) }
-    100% { transform:translate(0,0) }
-  }
-
-  .bar {
-    width:min(420px,80vw); height:6px; margin:28px auto 0; background:#1e1e1e; border-radius:99px; overflow:hidden;
-    box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;
-  }
-  .bar > span {
-    display:block; height:100%; width:0%;
-    background:linear-gradient(90deg, #ffe74a, #ffffff);
-    animation: load 4.2s ease-in-out forwards;
-  }
-  @keyframes load { to { width:100% } }
-
-  .footer {
-    position:absolute; bottom:18px; left:0; right:0; text-align:center; font-size:12px; color:#9a9a9a;
-    opacity:.9; letter-spacing:.06em;
-  }
-  .wm {position:fixed; right:16px; bottom:16px; opacity:.08; pointer-events:none}
-  .wm img {width:120px; height:auto; filter:grayscale(100%)}
-  /* vignette + dust */
-  .wrap::before{
-    content:""; position:absolute; inset:-20%;
-    background:radial-gradient(60% 60% at 50% 30%, rgba(255,231,74,.12), transparent 55%),
-                radial-gradient(100% 100% at 50% 50%, rgba(0,0,0,.0), rgba(0,0,0,.45) 70%);
-    pointer-events:none; filter:blur(2px);
-  }
-  .wrap::after{
-    content:""; position:absolute; inset:0; pointer-events:none; opacity:.25;
-    background:
-      radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.15), transparent 60%),
-      radial-gradient(2px 2px at 80% 30%, rgba(255,255,255,.1), transparent 60%),
-      radial-gradient(2px 2px at 30% 70%, rgba(255,255,255,.12), transparent 60%),
-      radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,.1), transparent 60%),
-      radial-gradient(1.5px 1.5px at 45% 15%, rgba(255,255,255,.1), transparent 60%);
-    animation: drift 14s linear infinite;
-  }
-  @keyframes drift { 0%{transform:translateY(0)} 100%{transform:translateY(-60px)} }
-
-  /* logo pulse */
-  .logo { animation: pop .9s cubic-bezier(.2,.9,.2,1) both, pulse 2.6s ease-in-out 1.2s infinite }
-  @keyframes pulse { 0%,100%{ filter:drop-shadow(0 0 10px rgba(255,231,74,.25)) } 50%{ filter:drop-shadow(0 0 26px rgba(255,231,74,.5)) } }
-
-  /* countdown + skip */
-  .meta { margin-top:12px; color:#bfbfbf; font-size:14px; letter-spacing:.06em }
-  .skip { color:#ffe74a; text-decoration:none; margin-left:8px }
-  .skip:hover { text-decoration:underline }
-
-  /* watermark fade-in */
-  .wm {position:fixed; right:16px; bottom:16px; opacity:0; pointer-events:none; transition:opacity .9s ease}
-  .wm.show { opacity:.12 }
-  .wm img {width:120px; height:auto; filter:grayscale(100%)}
-</style>
-<script>
-  (function(){
-    var ms = 4500, step = 1000, left = Math.ceil(ms/1000);
-    var countEl = document.getElementById('count');
-    var skipEl  = document.getElementById('skip');
-
-    function update(){ left--; if(left>=0 && countEl){ countEl.textContent = left; } }
-    var iv = setInterval(update, step);
-
-    function go(){
-      try{ clearInterval(iv); }catch(e){}
-      window.location.href = '/home.html';
-    }
-
-    // fade watermark just before redirect
-    setTimeout(function(){
-      var wm = document.querySelector('.wm');
-      if(wm){ wm.classList.add('show'); }
-    }, 3400);
-
-    // auto-redirect
-    setTimeout(go, ms);
-
-    // skip handlers
-    if(skipEl){ skipEl.addEventListener('click', function(e){ e.preventDefault(); go(); }); }
-    window.addEventListener('keydown', function(e){
-      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); }
-    });
-  })();
-</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Vault — Hub</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="assets/js/data-links.js"></script>
 </head>
 <body>
-<div class="wrap">
-  <div class="scan"></div>
-  <main style="text-align:center; padding:24px;">
-    <img class="logo glow" src="/assets/truthbot_zero.png" alt="TruthBot Zero Logo">
-    <h1 class="title">THE VAULT — REVELATION IS COMING</h1>
-    <p class="subtitle">
-      <span class="glitch" data-text="@povertyPimpSlayer">@povertyPimpSlayer</span> &nbsp;•&nbsp; TruthBot Zero
-    </p>
-    <div class="bar"><span></span></div>
-    <div class="meta">Redirecting in <span id="count">4</span>s · <a href="#" class="skip" id="skip">Skip</a></div>
-  </main>
-  <div cl
+  <div class="wrap">
+    <h1>The Vault — Hub</h1>
+    <p class="lead">Navigation for console, QR gate, maps, public forms, and internal sheets.</p>
 
-  <div class="footer">Auto-redirecting to the Vault…</div>
-</div>
-<div class="wm"><img src="/assets/truthbot_zero.png" alt="TruthBot Zero Watermark"></div>
-<div class="wm"><img src="/assets/truthbot_zero.png" alt="TruthBot Zero Watermark"></div>
+    <div class="nav">
+      <a class="btn info" href="VaultOps_Console.html">🎛️ Open VaultOps Console</a>
+      <a class="btn ok" href="gate/QR_Gate.html">🔑 QR Gate (EN/ES/TL)</a>
+      <a class="btn neutral" href="maps/leads_map.html">🗺️ Leads Map</a>
+      <a class="btn warn" href="https://docs.google.com/forms/d/1g9VldzAYr-hJFN9uWuxEFy2v9YMaIOQ5A_94f_xc8VQ/preview" target="_blank" rel="noopener">🧿 Vetting Form</a>
+      <a class="btn warn" href="https://docs.google.com/forms/d/1_T1L83_Q9Yh2EbXwJjPiid8a1uobE9yfLyThIfwRAMA/preview" target="_blank" rel="noopener">📥 Evidence Drop</a>
+      <a class="btn warn" href="https://docs.google.com/forms/d/1DWirS2CCvTBcfRCHL8RPQIyFE-Arm7dZyqJwtISY6wI/preview" target="_blank" rel="noopener">🧪 Beta Intake</a>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Data & Sheets</h3>
+        <p class="lead">Open your Google Sheets / databases (requires your Google login).</p>
+        <p>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnSHEETS_HOME">📚 Sheets Home</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnFORM_RESPONSES">🧾 Form Responses</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnVETTING_RESPONSES">🛡️ Vetting Responses</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnEVIDENCE_RESPONSES">📦 Evidence Responses</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnAPPROVALS">✅ Approvals Tracker</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnMASTERLIST">📓 Masterlist</a>
+          <a class="btn neutral" target="_blank" rel="noopener" id="btnEXPOSED">🗂️ Exposed Names Index</a>
+        </p>
+        <p class="lead">If a button does nothing, edit <code>assets/js/data-links.js</code> and paste the share link.</p>
+      </div>
+
+      <div class="card"><h3>About</h3>
+        <p>The Vault is a vetted community enforcing QR-only entry. Forms route into moderation, mapping, and exposure workflows.</p>
+      </div>
+      <div class="card"><h3>Security</h3>
+        <p>No raw webhooks or secrets are stored here. Reviewers work from Obsidian + Discord; public pages are read-only.</p>
+      </div>
+    </div>
+
+    <p class="footer">© 2025 The Vault — TruthBot‑Zero Ops.</p>
+  </div>
+
+<script>
+  const L = window.VAULT_SHEETS || {};
+  const set = (id, url) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (url) el.href = url; else el.addEventListener('click', e => { e.preventDefault(); alert('Configure this link in assets/js/data-links.js'); });
+  };
+  set('btnSHEETS_HOME', L.SHEETS_HOME_URL);
+  set('btnFORM_RESPONSES', L.FORM_RESPONSES_URL);
+  set('btnVETTING_RESPONSES', L.VETTING_RESPONSES_URL);
+  set('btnEVIDENCE_RESPONSES', L.EVIDENCE_RESPONSES_URL);
+  set('btnAPPROVALS', L.APPROVALS_TRACKER_URL);
+  set('btnMASTERLIST', L.MASTERLIST_URL);
+  set('btnEXPOSED', L.EXPOSED_INDEX_SHEET_URL || L.EXPOSED_INDEX_CSV_URL);
+</script>
 </body>
 </html>

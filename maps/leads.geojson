@@ -1,0 +1,26 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Sample NGO Office",
+        "category": "NGO",
+        "city": "Quezon City",
+        "region": "NCR",
+        "country": "PH",
+        "sources": [
+          "https://example.org/report"
+        ],
+        "notes": "Example only"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.0437,
+          14.676
+        ]
+      }
+    }
+  ]
+}

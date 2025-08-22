@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vault QR Gate</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Vault QR Gate <span class="badge">QR‑only entry</span></h1>
+    <p class="lead">Scan a code to enter the vetting funnel. Admin can update URLs later; QR refreshes automatically.</p>
+
+    <div class="grid">
+      <div class="card">
+        <h3>English Form</h3>
+        <div class="qr"><img id="qrEN" alt="QR EN"></div>
+        <div class="url" id="urlEN"></div>
+      </div>
+      <div class="card">
+        <h3>Español</h3>
+        <div class="qr"><img id="qrES" alt="QR ES"></div>
+        <div class="url" id="urlES"></div>
+      </div>
+      <div class="card">
+        <h3>Tagalog</h3>
+        <div class="qr"><img id="qrTL" alt="QR TL"></div>
+        <div class="url" id="urlTL"></div>
+      </div>
+    </div>
+
+    <p class="footer">Only vetted users get invites after form review. © 2025 The Vault.</p>
+  </div>
+
+<script>
+  const EN = "https://docs.google.com/forms/d/1g9VldzAYr-hJFN9uWuxEFy2v9YMaIOQ5A_94f_xc8VQ/preview";
+  const ES = "https://docs.google.com/forms/d/1_T1L83_Q9Yh2EbXwJjPiid8a1uobE9yfLyThIfwRAMA/preview";
+  const TL = "https://docs.google.com/forms/d/1DWirS2CCvTBcfRCHL8RPQIyFE-Arm7dZyqJwtISY6wI/preview";
+  const enc = s => encodeURIComponent(s);
+  function draw(id, url){
+    const api = `https://chart.googleapis.com/chart?cht=qr&chs=360x360&chl=${enc(url)}`;
+    document.querySelector('#qr'+id).src = api;
+    document.querySelector('#url'+id).textContent = url;
+  }
+  draw('EN', EN); draw('ES', ES); draw('TL', TL);
+</script>
+</body>
+</html>
