@@ -1,67 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Vault — Hub</title>
-<link rel="stylesheet" href="assets/css/style.css">
-<script src="assets/js/data-links.js"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="refresh" content="0; url=/home.html" />
+  <title>Redirecting...</title>
 </head>
 <body>
-  <div class="wrap">
-    <h1>The Vault — Hub</h1>
-    <p class="lead">Navigation for console, QR gate, maps, public forms, and internal sheets.</p>
-
-    <div class="nav">
-      <a class="btn info" href="VaultOps_Console.html">🎛️ Open VaultOps Console</a>
-      <a class="btn ok" href="gate/QR_Gate.html">🔑 QR Gate (EN/ES/TL)</a>
-      <a class="btn neutral" href="maps/leads_map.html">🗺️ Leads Map</a>
-      <a class="btn warn" href="https://docs.google.com/forms/d/1g9VldzAYr-hJFN9uWuxEFy2v9YMaIOQ5A_94f_xc8VQ/preview" target="_blank" rel="noopener">🧿 Vetting Form</a>
-      <a class="btn warn" href="https://docs.google.com/forms/d/1_T1L83_Q9Yh2EbXwJjPiid8a1uobE9yfLyThIfwRAMA/preview" target="_blank" rel="noopener">📥 Evidence Drop</a>
-      <a class="btn warn" href="https://docs.google.com/forms/d/1DWirS2CCvTBcfRCHL8RPQIyFE-Arm7dZyqJwtISY6wI/preview" target="_blank" rel="noopener">🧪 Beta Intake</a>
-    </div>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Data & Sheets</h3>
-        <p class="lead">Open your Google Sheets / databases (requires your Google login).</p>
-        <p>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnSHEETS_HOME">📚 Sheets Home</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnFORM_RESPONSES">🧾 Form Responses</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnVETTING_RESPONSES">🛡️ Vetting Responses</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnEVIDENCE_RESPONSES">📦 Evidence Responses</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnAPPROVALS">✅ Approvals Tracker</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnMASTERLIST">📓 Masterlist</a>
-          <a class="btn neutral" target="_blank" rel="noopener" id="btnEXPOSED">🗂️ Exposed Names Index</a>
-        </p>
-        <p class="lead">If a button does nothing, edit <code>assets/js/data-links.js</code> and paste the share link.</p>
-      </div>
-
-      <div class="card"><h3>About</h3>
-        <p>The Vault is a vetted community enforcing QR-only entry. Forms route into moderation, mapping, and exposure workflows.</p>
-      </div>
-      <div class="card"><h3>Security</h3>
-        <p>No raw webhooks or secrets are stored here. Reviewers work from Obsidian + Discord; public pages are read-only.</p>
-      </div>
-    </div>
-
-    <p class="footer">© 2025 The Vault — TruthBot‑Zero Ops.</p>
-  </div>
-
-<script>
-  const L = window.VAULT_SHEETS || {};
-  const set = (id, url) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    if (url) el.href = url; else el.addEventListener('click', e => { e.preventDefault(); alert('Configure this link in assets/js/data-links.js'); });
-  };
-  set('btnSHEETS_HOME', L.SHEETS_HOME_URL);
-  set('btnFORM_RESPONSES', L.FORM_RESPONSES_URL);
-  set('btnVETTING_RESPONSES', L.VETTING_RESPONSES_URL);
-  set('btnEVIDENCE_RESPONSES', L.EVIDENCE_RESPONSES_URL);
-  set('btnAPPROVALS', L.APPROVALS_TRACKER_URL);
-  set('btnMASTERLIST', L.MASTERLIST_URL);
-  set('btnEXPOSED', L.EXPOSED_INDEX_SHEET_URL || L.EXPOSED_INDEX_CSV_URL);
-</script>
+  <p>Redirecting to <a href="/home.html">home.html</a>…</p>
 </body>
 </html>
