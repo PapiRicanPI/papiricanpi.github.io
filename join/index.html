@@ -1,29 +1,33 @@
-<!doctype html>
-<html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>THE VAULT — Beta Intake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Vault Investigates — Beta Intake</title>
+  <meta http-equiv="Cache-Control" content="no-store" />
   <style>
-    :root{--bg:#0b0d12;--card:#11131a;--text:#dbe1ff;--muted:#8f9ad9;--line:#212636;--accent:#4f6bff}
-    body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-    .wrap{max-width:880px;margin:36px auto;padding:0 16px}
-    h1{font-weight:800;letter-spacing:.3px;margin:6px 0 8px}
-    p.sub{color:var(--muted);margin:0 0 18px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:14px 0}
-    label{display:block;margin:12px 0 6px;font-weight:600}
-    input,select,textarea{width:100%;padding:12px;border-radius:12px;border:1px solid #2b3150;background:#0f1322;color:#e6e9ff;font-size:16px;outline:none}
-    textarea{min-height:120px}
-    button{margin-top:14px;padding:14px 16px;border-radius:12px;border:0;font-weight:800;cursor:pointer;background:linear-gradient(90deg,#4f6bff,#7a5cff);color:white}
-    .disclaimer{color:#9aa3d1;font-size:13px;margin-top:10px}
-    a{color:#9fb0ff;text-decoration:none} a:hover{text-decoration:underline}
+    :root { --bg:#050608; --fg:#f4e0b5; --accent:#3b82f6; --muted:#b3b3b3; --ink:#0b0b0b; }
+    * { box-sizing:border-box }
+    html,body {
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial;
+    }
+    .container {
+      max-width:960px;
+      margin:0 auto;
+      padding:40px 20px;
+      text-align:center;
+    }
   </style>
 </head>
-<body>
-  <div class="wrap">
-    <h1>THE VAULT — Beta Intake</h1>
-    <p class="sub">No Google login required. Submit your info; you’ll get a copy via email.</p>
 
+<body>
+  <main class="container">
+    <div class="wrap">
+      <h1>THE VAULT β Beta Intake</h1>
+      <p class="sub">No Google login required. Submit your info; you’ll get a copy via email.</p>
+      <!-- keep your existing <form> block right after this line -->
     <!-- FormSubmit endpoint (tokenized) -->
     <form action="https://formsubmit.co/038ece8545016d5ed970957f7ba45d45" method="POST" class="card">
       <!-- Hidden controls -->
