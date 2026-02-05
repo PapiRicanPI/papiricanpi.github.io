@@ -1,42 +1,109 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>TruthBot Zero — The Vault</title>
-<meta http-equiv="Cache-Control" content="no-store" />
-<style>
-  :root { --bg:#0b0b0b; --fg:#ffe74a; --muted:#bfbfbf; --ink:#0b0b0b; }
-  * { box-sizing:border-box }
-  html,body { height:100%; margin:0; background:var(--bg); color:#fff;
-    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial; }
-  .container { max-width:920px; margin:0 auto; padding:40px 20px; text-align:center; }
-  .logo { width:220px; height:auto; display:block; margin:24px auto 8px; filter:drop-shadow(0 0 18px rgba(255,231,74,.25)); }
-  h1 { margin:18px 0 10px; color:var(--fg); letter-spacing:2px; font-weight:800; font-size:clamp(26px,4vw,40px); }
-  p.lead { color:var(--fg); opacity:.85; margin:0 0 26px; }
-  .cta { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:18px; }
-  .btn {
-    display:inline-flex; align-items:center; justify-content:center; gap:10px;
-    padding:14px 22px; border-radius:14px; background:var(--fg); color:var(--ink);
-    text-decoration:none; font-weight:700; letter-spacing:.3px; box-shadow:0 6px 22px rgba(255,231,74,.12);
-    transition: transform .08s ease, box-shadow .2s ease; min-width:220px;
-  }
-  .btn:hover { transform:translateY(-1px); box-shadow:0 10px 26px rgba(255,231,74,.20); }
-  footer { margin-top:40px; color:#9a9a9a; font-size:13px; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Vault Investigates — Follow the Money</title>
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <style>
+    :root { --bg:#050608; --fg:#f4e0b5; --accent:#3b82f6; --muted:#b3b3b3; --ink:#0b0b0b; }
+    * { box-sizing:border-box }
+    html,body {
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:#fff;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial;
+    }
+    .container {
+      max-width:960px;
+      margin:0 auto;
+      padding:40px 20px;
+      text-align:center;
+    }
+    .logo {
+      width:100%;
+      max-width:640px;
+      max-height:380px;
+      height:auto;
+      display:block;
+      margin:24px auto 12px;
+      filter:drop-shadow(0 0 18px rgba(0,0,0,.6));
+      object-fit:cover;
+    }
+    h1 {
+      margin:10px 0 4px;
+      color:var(--fg);
+      letter-spacing:1.5px;
+      font-weight:800;
+      font-size:clamp(26px,4vw,38px);
+    }
+    p.lead {
+      color:var(--muted);
+      margin:0 0 22px;
+      font-size:15px;
+    }
+    .cta {
+      display:flex;
+      gap:16px;
+      justify-content:center;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      border-radius:14px;
+      background:var(--accent);
+      color:#f9fafb;
+      text-decoration:none;
+      font-weight:700;
+      letter-spacing:.3px;
+      box-shadow:0 6px 22px rgba(37,99,235,.45);
+      transition: transform .08s ease, box-shadow .2s ease;
+      min-width:220px;
+    }
+    .btn.secondary {
+      background:transparent;
+      border:1px solid rgba(148,163,184,.8);
+      color:var(--muted);
+      box-shadow:none;
+    }
+    .btn:hover {
+      transform:translateY(-1px);
+      box-shadow:0 10px 26px rgba(37,99,235,.65);
+    }
+    .btn.secondary:hover {
+      box-shadow:0 8px 20px rgba(15,23,42,.6);
+    }
+    footer {
+      margin-top:40px;
+      color:#6b7280;
+      font-size:13px;
+    }
+  </style>
 </head>
 <body>
   <main class="container">
-    <img class="logo" src="/assets/truthbot_zero.png" alt="TruthBot Zero Logo" />
-    <h1>TRUTHBOT ZERO</h1>
-    <p class="lead">AI Archivist. Built for the Resistance.</p>
+    <img class="logo" src="/assets/the-vault-investigates.png"
+         alt="The Vault Investigates - Follow the Money" />
+    <h1>THE VAULT INVESTIGATES</h1>
+    <p class="lead">
+      Independent investigations into the business of poverty.
+      Secure intake for whistleblowers, witnesses, and researchers.
+    </p>
 
     <div class="cta">
-      <a class="btn" href="/gui/command.html">🔐 Enter the Vault</a>
-      <a class="btn" href="/join.html">🖋️ Request Access</a>
+      <!-- TODO: replace #tip-intake with your real intake URL -->
+      <a class="btn" href="#tip-intake">📨 Submit a Tip</a>
+      <!-- TODO: replace /gate.html with your Cloudflare gate URL if desired -->
+      <a class="btn secondary" href="/gate.html">🗄️ For Investigators</a>
     </div>
 
-    <footer>© 2025 The Vault — Built with ❤️ + 🔐 for GenXYZ.</footer>
+    <footer>© 2025 The Vault Investigates — Independent. No NGO. No corporate money.</footer>
   </main>
 </body>
 </html>
