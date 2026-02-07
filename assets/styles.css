@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", sans-serif;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+main.container {
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 0 16px 40px;
+  text-align: center;
+}
+
+.logo {
+  max-width: 260px;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+h1 {
+  letter-spacing: 0.18em;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.lead {
+  font-size: 15px;
+  color: #9ca3af;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #f97316;
+  color: #020617;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 1px solid #f97316;
+  color: #f97316;
+}
+
+.tip-intake {
+  text-align: left;
+  background: #020617;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #1f2937;
+}
+
+.tip-intake h2 {
+  margin-top: 0;
+}
+
+.trust-banner {
+  background: #0b1120;
+  border-radius: 12px;
+  padding: 12px 14px;
+  border: 1px solid #1d283a;
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 12px;
+}
+
+footer {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #6b7280;
+}
