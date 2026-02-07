@@ -33,6 +33,7 @@ input[type=password]:focus{border-color:#3041ff}.row{display:flex;gap:10px;margi
 .btn{appearance:none;cursor:pointer;width:100%;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;text-decoration:none;text-align:center}
 .err{color:var(--danger);margin-top:8px;min-height:18px}.muted{color:var(--muted);font-size:13px;margin-top:10px}
 #unlocked .cta{display:inline-block;margin-top:10px;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:var(--accent);color:#fff;font-weight:800;text-decoration:none}
+.muted a{color:var(--accent);text-decoration:underline}
 </style></head><body>
 <div class="wrap"><div class="container">
 
@@ -48,7 +49,13 @@ input[type=password]:focus{border-color:#3041ff}.row{display:flex;gap:10px;margi
     <input id="code" type="password" placeholder="••••••••" autocomplete="current-password" />
     <div class="row"><button class="btn" onclick="checkCode()">Enter</button></div>
     <div id="err" class="err"></div>
-    <p class="muted">Form link reveals only after a correct code. Discord invite is QR-only.</p>
+    <p class="muted">
+      Form link reveals only after a correct code. Discord invite is QR-only.
+      Read the full access policy in “Who Gets Into The Vault?” here:
+      <a href="https://thevaultinvestigates.cloud/p/who-gets-into-the-vault" target="_blank" rel="noopener">
+        thevaultinvestigates.cloud/p/who-gets-into-the-vault
+      </a>.
+    </p>
   </div>
   <div id="unlocked" style="display:none">
     <h3 style="margin:0 0 6px">Access granted</h3>
