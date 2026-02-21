@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Vault – Resources for Researchers</title>
+  <title>The Vault – Resources for Investigators</title>
 
-  <!-- Basic styling to match a simple Vault layout; you can adjust colors later -->
   <style>
     :root {
-      --bg: #050608;
-      --bg-alt: #0c0f17;
-      --card: #151925;
-      --accent: #f7b500;
-      --accent-soft: rgba(247, 181, 0, 0.15);
-      --text: #f5f5f5;
-      --muted: #a4a8b8;
-      --border: #262b3a;
-      --danger: #ff4f4f;
-      --link: #8ab4ff;
-      --link-hover: #c3d4ff;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.65);
-      --radius-lg: 16px;
-      --radius-md: 10px;
+      --bg: #05060a;
+      --bg-alt: #0c0f18;
+      --card: #101320;
+      --accent: #35c3ff;
+      --accent-soft: rgba(53, 195, 255, 0.18);
+      --accent-strong: #6be4ff;
+      --danger: #ff4d6a;
+      --text-main: #f7f7ff;
+      --text-muted: #a4acc4;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --pill-bg: rgba(164, 172, 196, 0.14);
+      --pill-border: rgba(255, 255, 255, 0.12);
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-card: 18px;
       --radius-pill: 999px;
     }
 
@@ -32,857 +31,154 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #151a26 0, #050608 42%, #020308 100%);
-      color: var(--text);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #15192b 0, #05060a 55%);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      padding: 32px 16px 64px;
     }
 
-    a {
-      color: var(--link);
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: var(--link-hover);
-      text-decoration: underline;
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     header {
-      border-bottom: 1px solid var(--border);
-      background: linear-gradient(to right, rgba(10, 12, 20, 0.96), rgba(10, 7, 15, 0.98));
-      backdrop-filter: blur(18px);
-      position: sticky;
-      top: 0;
-      z-index: 40;
-    }
-
-    .nav-inner {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 14px 20px;
+      margin-bottom: 28px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: 12px;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .brand-mark {
-      width: 32px;
-      height: 32px;
-      border-radius: 11px;
-      background: radial-gradient(circle at 30% 20%, #f7f1c6, #f7b500 36%, #9a5a00 100%);
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.7), 0 14px 30px rgba(0, 0, 0, 0.9);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 6px;
-      border-radius: 9px;
-      border: 1px solid rgba(0, 0, 0, 0.45);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-    }
-
-    .brand-text-main {
-      font-size: 16px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .brand-text-sub {
-      font-size: 11px;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      font-size: 13px;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-    }
-
-    .nav-links a:hover {
-      border-color: rgba(139, 148, 178, 0.4);
-      background: rgba(11, 15, 26, 0.7);
-      text-decoration: none;
-    }
-
-    .nav-links a.nav-active {
-      color: #050608;
-      background: var(--accent);
-      border-color: rgba(255, 255, 255, 0.16);
-      font-weight: 600;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55);
-    }
-
-    .pill {
+    .site-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 3px 10px;
+      gap: 8px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(247, 181, 0, 0.5);
-      background: radial-gradient(circle at top left, rgba(247, 181, 0, 0.4), rgba(5, 6, 8, 0.1));
-      color: #ffeec2;
+      border: 1px solid var(--pill-border);
+      background: linear-gradient(
+        135deg,
+        rgba(53, 195, 255, 0.12),
+        rgba(53, 195, 255, 0)
+      );
+      color: var(--text-muted);
+      font-size: 12px;
+      width: fit-content;
     }
 
-    .pill-dot {
+    .site-badge-dot {
       width: 7px;
       height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 3px rgba(247, 181, 0, 0.3);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #35c3ff);
+      box-shadow: 0 0 10px rgba(107, 228, 255, 0.8);
     }
 
-    main {
-      flex: 1;
-      padding: 26px 16px 40px;
-    }
-
-    .page-shell {
-      max-width: 1040px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 3.3fr) minmax(260px, 2fr);
-      gap: 22px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 880px) {
-      .page-shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .hero-card {
-      background: linear-gradient(145deg, rgba(13, 16, 28, 0.96), rgba(6, 8, 14, 0.98));
-      border-radius: 22px;
-      padding: 22px 22px 20px;
-      border: 1px solid rgba(85, 99, 140, 0.65);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at top left, rgba(247, 181, 0, 0.14) 0, transparent 55%),
-        radial-gradient(circle at bottom right, rgba(88, 111, 255, 0.16) 0, transparent 60%);
-      opacity: 0.85;
-      pointer-events: none;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-tag-row {
+    .title-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .hero-badge {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-    }
-
-    .hero-title {
-      font-size: 26px;
-      line-height: 1.2;
-      margin-bottom: 8px;
-    }
-
-    .hero-title span {
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      max-width: 34rem;
-    }
-
-    .hero-subtitle strong {
-      color: #f6f2dd;
-      font-weight: 600;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 720px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .callout {
-      border-radius: 16px;
-      border: 1px solid rgba(247, 181, 0, 0.4);
-      background: radial-gradient(circle at top left, rgba(247, 181, 0, 0.32), rgba(12, 13, 20, 0.96));
-      padding: 14px 14px 12px;
-      font-size: 13px;
-      color: #1b1204;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75);
-    }
-
-    .callout-title {
-      font-size: 12px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-
-    .callout p {
-      color: #18120a;
-      line-height: 1.5;
-    }
-
-    .callout p span {
-      font-weight: 600;
-    }
-
-    .callout-alt {
-      border-radius: 16px;
-      border: 1px solid rgba(96, 110, 163, 0.65);
-      background: radial-gradient(circle at top left, rgba(88, 111, 255, 0.2), rgba(11, 12, 22, 0.96));
-      padding: 12px 13px 10px;
-      font-size: 12px;
-      color: var(--muted);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .callout-alt strong {
-      color: #e3e7ff;
-      font-weight: 600;
-    }
-
-    .section {
-      margin-top: 22px;
-      background: radial-gradient(circle at top left, rgba(16, 20, 34, 0.98), rgba(5, 6, 10, 0.98));
-      border-radius: 18px;
-      border: 1px solid rgba(57, 70, 114, 0.7);
-      padding: 16px 18px 14px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
+      gap: 12px;
       align-items: baseline;
-      gap: 8px;
-      margin-bottom: 10px;
+      justify-content: space-between;
     }
 
-    .section-title {
-      font-size: 15px;
+    h1 {
+      font-size: 24px;
+      letter-spacing: 0.03em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
+      color: #fdfdff;
     }
 
-    .section-pill {
-      font-size: 11px;
-      color: var(--muted);
-      border-radius: 999px;
-      border: 1px solid rgba(90, 102, 145, 0.9);
-      padding: 3px 9px;
-    }
-
-    .section-body {
-      font-size: 13px;
-      color: #c9ccdd;
+    .subtitle {
+      max-width: 600px;
+      font-size: 14px;
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
-    .section-body p + p {
-      margin-top: 8px;
-    }
-
-    .resource-list {
-      list-style: none;
-      margin-top: 8px;
-    }
-
-    .resource-item {
-      margin-bottom: 8px;
-      padding: 8px 9px;
-      border-radius: 12px;
-      border: 1px solid rgba(71, 82, 128, 0.8);
-      background: linear-gradient(135deg, rgba(18, 22, 36, 0.96), rgba(6, 7, 12, 0.96));
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .resource-item strong {
-      font-size: 13px;
-    }
-
-    .resource-meta {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .resource-tags {
-      margin-top: 4px;
+    .tag-strip {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 8px;
+      margin-top: 4px;
     }
 
     .tag {
-      font-size: 10px;
+      font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      padding: 3px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(113, 126, 178, 0.9);
-      color: #c3c7e0;
-      background: radial-gradient(circle at top left, rgba(108, 118, 184, 0.35), rgba(8, 10, 17, 0.95));
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--pill-border);
+      background: var(--pill-bg);
+      color: var(--text-muted);
     }
 
-    .tag-accent {
-      border-color: rgba(247, 181, 0, 0.7);
-      color: #ffe39a;
-      background: radial-gradient(circle at top left, rgba(247, 181, 0, 0.45), rgba(11, 9, 3, 0.98));
-    }
+    /* Region Nav */
 
-    .tag-danger {
-      border-color: rgba(255, 79, 79, 0.8);
-      color: #ffd1d1;
-      background: radial-gradient(circle at top left, rgba(255, 79, 79, 0.4), rgba(19, 5, 7, 0.98));
-    }
-
-    .sidebar {
+    .region-nav {
+      margin: 12px 0 24px;
       display: flex;
-      flex-direction: column;
-      gap: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
-    .sidebar-card {
-      background: radial-gradient(circle at top left, rgba(19, 22, 34, 0.98), rgba(4, 5, 9, 0.98));
-      border-radius: 18px;
-      border: 1px solid rgba(66, 77, 118, 0.85);
-      padding: 14px 14px 13px;
-      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.75);
-      font-size: 12px;
-      color: #c5c8da;
-    }
-
-    .sidebar-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .sidebar-section + .sidebar-section {
-      margin-top: 8px;
-      padding-top: 8px;
-      border-top: 1px dashed rgba(74, 86, 129, 0.8);
-    }
-
-    .mini-list {
-      list-style: none;
-      margin-top: 6px;
-    }
-
-    .mini-list li {
-      margin-bottom: 5px;
-      display: flex;
+    .region-pill {
+      display: inline-flex;
+      align-items: center;
       gap: 6px;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--pill-border);
+      background: rgba(10, 13, 24, 0.92);
+      color: var(--text-muted);
+      font-size: 13px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+        transform 0.1s ease;
+    }
+
+    .region-pill span.flag {
+      font-size: 13px;
+    }
+
+    .region-pill strong {
+      font-weight: 600;
+      color: #e4e7f5;
+    }
+
+    .region-pill:hover {
+      background: rgba(53, 195, 255, 0.11);
+      border-color: rgba(53, 195, 255, 0.7);
+      transform: translateY(-1px);
+    }
+
+    /* Layout */
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: 20px;
       align-items: flex-start;
     }
 
-    .mini-bullet {
-      width: 4px;
-      height: 4px;
-      border-radius: 999px;
-      background: rgba(138, 180, 255, 0.9);
-      margin-top: 6px;
-      flex-shrink: 0;
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
-    .hint {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 12px 18px 16px;
-      font-size: 11px;
-      color: var(--muted);
-      background: radial-gradient(circle at top, rgba(16, 19, 31, 0.86), rgba(2, 3, 7, 0.98));
-    }
-
-    .footer-inner {
-      max-width: 1040px;
-      margin: 0 auto;
+    .main-column {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 16px;
     }
 
-    .footer-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+    .card {
+      background: radial-gradient(circle at top left, #181d33 0, #0b0d16 55%);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-subt
 
-    .footer-links a {
-      color: var(--muted);
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="nav-inner">
-      <div class="brand">
-        <div class="brand-mark" aria-hidden="true"></div>
-        <div>
-          <div class="brand-text-main">The Vault</div>
-          <div class="brand-text-sub">TruthDrop · Investigator Tools</div>
-        </div>
-      </div>
-
-      <nav class="nav-links" aria-label="Primary">
-        <a href="home.html">Home</a>
-        <a href="gate.html">For Investigators</a>
-        <a href="resources.html" class="nav-active">Resources</a>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <div class="page-shell">
-      <!-- Main content -->
-      <section class="hero-card" aria-labelledby="resources-title">
-        <div class="hero-inner">
-          <div class="hero-tag-row">
-            <div class="pill">
-              <span class="pill-dot"></span>
-              FIELD KIT FOR RESEARCHERS
-            </div>
-            <div class="hero-badge">
-              Curated links for poverty, fraud, and public records work
-            </div>
-          </div>
-
-          <h1 id="resources-title" class="hero-title">
-            Resources for <span>Investigators &amp; Researchers</span>
-          </h1>
-
-          <p class="hero-subtitle">
-            This page collects tools, guides, and reference material that I use when following the money,
-            documenting fraud, or tracing how public programs break down for real people.
-            Treat this as a living <strong>field kit</strong> – it will grow over time.
-          </p>
-
-          <div class="hero-grid">
-            <div class="callout">
-              <div class="callout-title">How to use this page</div>
-              <p>
-                Start with the <span>“Getting Oriented”</span> section if you are newer to this work.
-                If you already have a case, jump straight to <span>“Case‑building &amp; documentation”</span>.
-                When in doubt, bookmark this page and come back as your investigation evolves.
-              </p>
-            </div>
-
-            <div class="callout-alt">
-              <p>
-                Nothing here is legal advice, financial advice, or a promise of coverage.
-                It is a practical set of links and checklists to help you gather records, preserve evidence,
-                and communicate clearly when you decide to submit a tip or report.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Sidebar -->
-      <aside class="sidebar" aria-label="Quick reference">
-        <div class="sidebar-card">
-          <div class="sidebar-title">Quick jumps</div>
-          <div class="sidebar-section">
-            <ul class="mini-list">
-              <li>
-                <span class="mini-bullet"></span>
-                <a href="#getting-oriented">Getting oriented</a>
-              </li>
-              <li>
-                <span class="mini-bullet"></span>
-                <a href="#records">Public records &amp; data</a>
-              </li>
-              <li>
-                <span class="mini-bullet"></span>
-                <a href="#case-building">Case‑building &amp; documentation</a>
-              </li>
-              <li>
-                <span class="mini-bullet"></span>
-                <a href="#security">Security, privacy &amp; safety</a>
-              </li>
-              <li>
-                <span class="mini-bullet"></span>
-                <a href="#truthdrop">Working with TruthDrop</a>
-              </li>
-            </ul>
-          </div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-title">Living document</div>
-            <p>
-              This page will change as new tools, agencies, or best‑practice checklists become available.
-              If a link breaks or you know a better resource, note it when you submit a tip and I will try to update this list.
-            </p>
-          </div>
-
-          <div class="sidebar-section">
-            <div class="sidebar-title">If you are in crisis</div>
-            <p>
-              If you are in immediate danger, or someone is at risk of serious harm, please contact local emergency services first.
-              This project cannot act as an emergency response line.
-            </p>
-          </div>
-        </div>
-      </aside>
-    </div>
-
-    <!-- Sections -->
-    <section id="getting-oriented" class="section" aria-labelledby="getting-oriented-title">
-      <div class="section-header">
-        <h2 id="getting-oriented-title" class="section-title">Getting oriented</h2>
-        <div class="section-pill">Start here</div>
-      </div>
-      <div class="section-body">
-        <p>
-          Many people arrive here with a story that feels overwhelming: benefit cuts that make no sense,
-          “overpayments” they cannot possibly repay, or paperwork that vanished into a black hole.
-          Before you start uploading documents, it helps to sketch the basic shape of your situation.
-        </p>
-
-        <p>
-          A simple way to begin is to write three short paragraphs in your own words:
-          what happened, who was involved (agencies, contractors, landlords, employers),
-          and what changed for you when this started.
-          You do not have to share names publicly to do this – it is for your own clarity.
-        </p>
-      </div>
-    </section>
-
-    <section id="records" class="section" aria-labelledby="records-title">
-      <div class="section-header">
-        <h2 id="records-title" class="section-title">Public records &amp; data</h2>
-        <div class="section-pill">Finding the paper trail</div>
-      </div>
-      <div class="section-body">
-        <p>
-          The strongest stories and cases usually have a mix of lived experience, paper records,
-          and some kind of official data or correspondence.
-          The links below are a starting point for finding that material in the United States.
-        </p>
-
-        <ul class="resource-list">
-          <li class="resource-item">
-            <strong>State and local open‑records (FOIA/sunshine) laws</strong>
-            <div class="resource-meta">
-              Find the name of your state’s open‑records law and the agency that handles requests.
-              Many state AG or press‑association sites maintain FOIA request templates.
-            </div>
-            <div class="resource-tags">
-              <span class="tag tag-accent">FOIA</span>
-              <span class="tag">State agencies</span>
-              <span class="tag">Paper trail</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Benefits, case files, and notices</strong>
-            <div class="resource-meta">
-              Keep copies of every notice, denial letter, overpayment letter, recertification packet,
-              and appeal decision. When possible, download PDFs from your online portal in addition to paper mail.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">SNAP / TANF</span>
-              <span class="tag">Unemployment</span>
-              <span class="tag">Disability</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Court and docket systems</strong>
-            <div class="resource-meta">
-              Many counties and states publish searchable dockets for eviction, debt collection, criminal cases,
-              and some administrative hearings. Search by your name and by agencies, landlords, or contractors involved.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Evictions</span>
-              <span class="tag">Debt</span>
-              <span class="tag">Vendors</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Regulator and watchdog databases</strong>
-            <div class="resource-meta">
-              Depending on the program, there may be inspector‑general reports, audit findings, or enforcement actions
-              already published against agencies or contractors. These can help you understand if your case is part of a pattern.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Audits</span>
-              <span class="tag">Inspector general</span>
-              <span class="tag">Patterns</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="case-building" class="section" aria-labelledby="case-building-title">
-      <div class="section-header">
-        <h2 id="case-building-title" class="section-title">Case‑building &amp; documentation</h2>
-        <div class="section-pill">Before you send a tip</div>
-      </div>
-      <div class="section-body">
-        <p>
-          You do not need a perfect case file to reach out.
-          But a little structure will help any reporter, advocate, or lawyer understand what you are dealing with
-          and what kind of follow‑up might actually help.
-        </p>
-
-        <ul class="resource-list">
-          <li class="resource-item">
-            <strong>Timeline of what happened</strong>
-            <div class="resource-meta">
-              Write down key dates: when you applied, when benefits changed, when you were told something different
-              over the phone, and when money was taken or threatened.
-              Screenshots, portal messages, and letters all help anchor that timeline.
-            </div>
-            <div class="resource-tags">
-              <span class="tag-accent">Core step</span>
-              <span class="tag">Screenshots</span>
-              <span class="tag">Notices</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Who touched your case</strong>
-            <div class="resource-meta">
-              Note every agency, office, or company name that appears on your paperwork or in your portal.
-              This can include call‑center vendors, verification contractors, landlords, and debt‑collection firms.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Agencies</span>
-              <span class="tag">Contractors</span>
-              <span class="tag">Vendors</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Evidence bundle</strong>
-            <div class="resource-meta">
-              Create a folder (digital or physical) where you keep copies of everything you might later upload:
-              letters, portal downloads, screenshots, photos of envelopes, and any notes from phone calls.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Organizing</span>
-              <span class="tag">Backup</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>What you need</strong>
-            <div class="resource-meta">
-              When you are ready to send a tip, note what you are hoping for:
-              public attention, help understanding the rules, help finding legal aid,
-              or simply a record that this happened to you.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Expectations</span>
-              <span class="tag">Next steps</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="security" class="section" aria-labelledby="security-title">
-      <div class="section-header">
-        <h2 id="security-title" class="section-title">Security, privacy &amp; safety</h2>
-        <div class="section-pill">Protecting yourself</div>
-      </div>
-      <div class="section-body">
-        <p>
-          Any time you are handling sensitive documents – especially IDs, Social Security numbers, or medical information –
-          please move slowly and consider what you are comfortable sharing.
-          You always have the right to blur, redact, or withhold certain details.
-        </p>
-
-        <ul class="resource-list">
-          <li class="resource-item">
-            <strong>Basic digital‑safety habits</strong>
-            <div class="resource-meta">
-              Use strong, unique passwords and, if possible, turn on two‑factor authentication for your email
-              and any state portals. Be careful using public Wi‑Fi when logging into benefits or banking accounts.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">2FA</span>
-              <span class="tag">Email</span>
-              <span class="tag">Portals</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Redacting sensitive information</strong>
-            <div class="resource-meta">
-              Before you upload anything, consider covering full SSNs, full account numbers,
-              or details about children and health conditions. In many cases, case numbers and dates are enough
-              for pattern‑spotting without exposing everything.
-            </div>
-            <div class="resource-tags">
-              <span class="tag-danger">Redaction</span>
-              <span class="tag">Case numbers</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>Offline copies</strong>
-            <div class="resource-meta">
-              Keep at least one offline copy of critical documents (on a USB drive or printed and stored safely),
-              in case an account is locked or a portal goes down.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Backup</span>
-              <span class="tag">Resilience</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="truthdrop" class="section" aria-labelledby="truthdrop-title">
-      <div class="section-header">
-        <h2 id="truthdrop-title" class="section-title">Working with TruthDrop</h2>
-        <div class="section-pill">Sending a tip</div>
-      </div>
-      <div class="section-body">
-        <p>
-          TruthDrop is the separate portal where you can submit tips, upload documents, and – over time –
-          help map patterns across cases.
-          This Resources page exists on The Vault site so you can prepare before you decide how much to share.
-        </p>
-
-        <ul class="resource-list">
-          <li class="resource-item">
-            <strong>TruthDrop portal</strong>
-            <div class="resource-meta">
-              When the portal is live, you will be able to submit a tip and optionally attach documents.
-              You can start by sharing your story in your own words and add files later if that feels safer.
-            </div>
-            <div class="resource-tags">
-              <span class="tag-accent">Coming soon</span>
-              <span class="tag">Tip intake</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>What to include in a TruthDrop tip</strong>
-            <div class="resource-meta">
-              At minimum, explain what program or system failed, what you were told,
-              and what concrete harm you are facing now (loss of housing, debt, food insecurity, etc.).
-              You can note that you have documents without uploading them immediately.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Program</span>
-              <span class="tag">Harm</span>
-              <span class="tag">Evidence</span>
-            </div>
-          </li>
-
-          <li class="resource-item">
-            <strong>If you are not ready to submit</strong>
-            <div class="resource-meta">
-              You can use this page as a private checklist.
-              Build your timeline, gather documents, and learn the landscape first.
-              There is no requirement to send anything until you decide you want to.
-            </div>
-            <div class="resource-tags">
-              <span class="tag">Preparation</span>
-              <span class="tag">No pressure</span>
-            </div>
-          </li>
-        </ul>
-
-        <p class="hint">
-          When the TruthDrop portal address is final, this section will be updated with a direct link
-          and any additional safety guidance specific to that system.
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div>
-        © <span id="year"></span> The Vault Investigates · Experimental research project.
-      </div>
-      <div class="footer-links">
-        <a href="home.html">Home</a>
-        <span>·</span>
-        <a href="gate.html">Investigator gateway</a>
-        <span>·</span>
-        <a href="resources.html">Resources</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    // Set the current year in the footer
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
