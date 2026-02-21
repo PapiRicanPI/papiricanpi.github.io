@@ -1,83 +1,256 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8" />
-<title>The Vault — Gate</title>
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="robots" content="noindex,nofollow" />
-<meta name="referrer" content="no-referrer" />
-<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
-<meta http-equiv="Pragma" content="no-cache" />
-<style>
-:root{color-scheme:dark;--bg:#0b0b10;--card:#11131a;--fg:#e6e9f2;--muted:#8991a8;--accent:#2f81ff;--accent2:#7a5cff;--border:#202334;--danger:#ff4d4d}
-*{box-sizing:border-box}html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;background:var(--bg);color:var(--fg)}
-.wrap{min-height:100%;display:flex;flex-direction:column}.container{max-width:980px;width:100%;margin:0 auto;padding:28px 16px}
-.hero{display:grid;place-items:center;text-align:center;gap:16px;margin:20px 0 10px}
-.face {
-  width: 160px;
-  height: 160px;
-  border-radius: 24px;
-  background: #0f1322 url('/assets/logo.jpg') center/80% no-repeat;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, .45), 0 0 1px var(--border) inset;
-  position: relative;
-  overflow: hidden;
-}
-.scan:before,.scan:after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(47,129,255,.7),transparent);animation:scan 2.4s linear infinite}
-.scan:after{animation-delay:1.2s}@keyframes scan{0%{top:0}100%{top:100%}}
-.title{font-weight:800;letter-spacing:.5px;font-size:28px;margin:8px 0 0}
-.glitch{position:relative;display:inline-block}.glitch:before,.glitch:after{content:attr(data-text);position:absolute;left:0;top:0;opacity:.6;filter:blur(.3px)}
-.glitch:before{transform:translateX(-1px);color:#7a5cff}.glitch:after{transform:translateX(1px);color:#2f81ff}
-.sub{color:var(--muted);margin:4px 0 0}
-.card{max-width:560px;margin:18px auto;padding:24px;border-radius:18px;background:var(--card);border:1px solid var(--border);box-shadow:0 10px 40px rgba(0,0,0,.45)}
-label{display:block;margin:0 0 8px;font-weight:700}
-input[type=password]{width:100%;padding:12px 14px;border-radius:12px;background:#0b0b10;color:var(--fg);border:1px solid #2a2e42;outline:none}
-input[type=password]:focus{border-color:#3041ff}.row{display:flex;gap:10px;margin-top:10px}
-.btn{appearance:none;cursor:pointer;width:100%;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:800;text-decoration:none;text-align:center}
-.err{color:var(--danger);margin-top:8px;min-height:18px}.muted{color:var(--muted);font-size:13px;margin-top:10px}
-#unlocked .cta{display:inline-block;margin-top:10px;padding:12px 16px;border-radius:12px;border:1px solid #3b6aff;background:var(--accent);color:#fff;font-weight:800;text-decoration:none}
-.muted a{color:var(--accent);text-decoration:underline}
-</style></head><body>
-<div class="wrap"><div class="container">
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The Vault — Gate</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0b10;
+      --card: #11131a;
+      --fg: #e6e9f2;
+      --muted: #8991a8;
+      --accent: #2f81ff;
+      --accent2: #7a5cff;
+      --border: #202334;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+    }
+    .wrap {
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 28px 16px 40px;
+    }
+    .hero {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      gap: 16px;
+      margin: 20px 0 10px;
+    }
+    .face {
+      width: 160px;
+      height: 160px;
+      border-radius: 24px;
+      background: #0f1322 url('/assets/logo.jpg') center/80% no-repeat;
+      box-shadow:
+        0 12px 40px rgba(0, 0, 0, .45),
+        0 0 1px var(--border) inset;
+      position: relative;
+      overflow: hidden;
+    }
+    .scan:before,
+    .scan:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(47,129,255,.7), transparent);
+      animation: scan 2.4s linear infinite;
+    }
+    .scan:after { animation-delay: 1.2s; }
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
+    .title {
+      font-weight: 800;
+      letter-spacing: .5px;
+      font-size: 28px;
+      margin: 8px 0 0;
+    }
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch:before,
+    .glitch:after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      opacity: .6;
+      filter: blur(.3px);
+    }
+    .glitch:before {
+      transform: translateX(-1px);
+      color: #7a5cff;
+    }
+    .glitch:after {
+      transform: translateX(1px);
+      color: #2f81ff;
+    }
+    .sub {
+      color: var(--muted);
+      margin: 4px 0 0;
+      max-width: 520px;
+    }
 
-<section class="hero">
-  <div class="face scan" aria-hidden="true"></div>
-  <h1 class="title"><span class="glitch" data-text="THE VAULT">THE VAULT</span></h1>
-  <p class="sub">Expose poverty pimps. Verify receipts. Protect whistleblowers.</p>
-</section>
+    .card {
+      max-width: 560px;
+      margin: 18px auto;
+      padding: 24px 22px 22px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 40px rgba(0,0,0,.45);
+    }
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    .card p {
+      margin: 0 0 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .btn-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .btn,
+    .btn-secondary {
+      appearance: none;
+      cursor: pointer;
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid #3b6aff;
+      font-weight: 800;
+      text-decoration: none;
+      text-align: center;
+      font-size: 14px;
+      display: inline-block;
+    }
+    .btn {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #fff;
+    }
+    .btn-secondary {
+      background: #0b0b10;
+      color: var(--fg);
+      border-color: #2a2e42;
+    }
+    .muted {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 10px;
+    }
+    .muted a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+    .footer-note {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+      opacity: 0.85;
+    }
+    .footer-note a {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="container">
 
-<section class="card" id="vault-gate" aria-label="Gate">
-  <div id="locked">
-    <label for="code">Enter gate code</label>
-    <input id="code" type="password" placeholder="••••••••" autocomplete="current-password" />
-    <div class="row"><button class="btn" onclick="checkCode()">Enter</button></div>
-    <div id="err" class="err"></div>
-    <p class="muted">
-      Form link reveals only after a correct code. Discord invite is QR-only.
-      Read the full access policy in “Who Gets Into The Vault?” here:
-      <a href="https://thevaultinvestigates.cloud/p/who-gets-into-the-vault" target="_blank" rel="noopener">
-        thevaultinvestigates.cloud/p/who-gets-into-the-vault
-      </a>.
-    </p>
+      <section class="hero">
+        <div class="face scan" aria-hidden="true"></div>
+        <h1 class="title">
+          <span class="glitch" data-text="THE VAULT">THE VAULT</span>
+        </h1>
+        <p class="sub">
+          Expose poverty pimps. Verify receipts. Protect whistleblowers.
+          This gate is your public entry into the investigative side of The Vault and TruthDrop.
+        </p>
+      </section>
+
+      <section class="card" aria-label="Public Gate">
+        <h2>Public Gate to The Vault</h2>
+        <p>
+          This page is a **public front door**, not a secret back channel. It explains how access works
+          and gives you the official way to request entry into the vetted investigative space.
+        </p>
+        <p>
+          If you are a journalist, researcher, archivist, or community member working on poverty,
+          disaster aid, or nonprofit abuse in the Philippines, Puerto Rico, or the United States,
+          you can ask to be considered for access.
+        </p>
+
+        <div class="btn-row">
+          <a
+            class="btn"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSd09UgirO0Gk5jlpQNJL-P3MN8FX-Bq-4VUB9XZb0J8ptAYhA/viewform"
+            target="_blank"
+            rel="noopener"
+          >
+            Request Investigative Access (Form)
+          </a>
+
+          <a
+            class="btn-secondary"
+            href="https://thevaultinvestigates.cloud/p/who-gets-into-the-vault"
+            target="_blank"
+            rel="noopener"
+          >
+            Read: Who Gets Into The Vault?
+          </a>
+
+          <a
+            class="btn-secondary"
+            href="https://vault.povertypimpslayerthevault.io/home.html"
+          >
+            Go to Evidence Drop Page
+          </a>
+
+          <a
+            class="btn-secondary"
+            href="https://vault.povertypimpslayerthevault.io/resources.html"
+          >
+            Open Resources for Investigators
+          </a>
+        </div>
+
+        <p class="muted">
+          Support does not guarantee portal access; all TruthDrop access is vetted for safety and fit.
+          Public tips and documents can be sent through the Evidence Drop page. Internal tools and case
+          workspaces remain restricted to protect sources and ongoing investigations.
+        </p>
+      </section>
+
+      <p class="footer-note">
+        For urgent safety concerns or to share sensitive material, consider using secure channels and
+        read the access policy first. More context and updates: 
+        <a href="https://thevaultinvestigates.cloud" target="_blank" rel="noopener">
+          thevaultinvestigates.cloud
+        </a>.
+      </p>
+
+    </div>
   </div>
-  <div id="unlocked" style="display:none">
-    <h3 style="margin:0 0 6px">Access granted</h3>
-    <p class="muted" style="margin-top:0">Proceed to vetting.</p>
-    <a class="cta" href="https://docs.google.com/forms/d/e/1FAIpQLSd09UgirO0Gk5jlpQNJL-P3MN8FX-Bq-4VUB9XZb0J8ptAYhA/viewform" target="_blank" rel="noopener">Request Access (Form)</a>
-  </div>
-</section>
-
-</div></div>
-<script>
-const EXPECTED_HASH="62fda6aa8b6d833557265d5bcf1a9bd21f30e1cc089ffe466cdd42de03fffd4d";
-async function checkCode(){
-  const box=document.getElementById('code'); const val=box.value.trim();
-  if(!val){err("Enter the code.");return;}
-  const buf=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(val));
-  const hex=[...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,"0")).join("");
-  const ok=(hex===EXPECTED_HASH);
-  document.getElementById('locked').style.display=ok?"none":"block";
-  document.getElementById('unlocked').style.display=ok?"block":"none";
-  err(ok?"":"Wrong code."); if(ok){box.value="";}
-}
-function err(m){document.getElementById('err').textContent=m||""}
-document.getElementById('code').addEventListener('keydown',e=>{if(e.key==="Enter")checkCode();});
-</script>
-</body></html>
+</body>
+</html>
