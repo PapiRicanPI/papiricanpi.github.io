@@ -180,5 +180,532 @@
     .card {
       background: radial-gradient(circle at top left, #181d33 0, #0b0d16 55%);
       border-radius: var(--radius-card);
-      border: 1px solid var(--border-subt
+      border: 1px solid var(--border-subtle);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+    }
 
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5ff;
+    }
+
+    .card-pill {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(164, 172, 196, 0.5);
+      color: var(--text-muted);
+      background: rgba(3, 8, 20, 0.96);
+      white-space: nowrap;
+    }
+
+    .section-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+
+    .link-list {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .link-list li + li {
+      margin-top: 6px;
+    }
+
+    .link-label {
+      font-size: 13px;
+      color: #e4e7ff;
+      font-weight: 500;
+    }
+
+    .link-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    a.resource-link {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    a.resource-link:hover {
+      text-decoration: underline;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .small-pill {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(9, 12, 24, 0.9);
+      color: var(--text-muted);
+    }
+
+    /* Anchor offsets for region IDs */
+
+    .region-anchor {
+      scroll-margin-top: 110px;
+      margin-top: 4px;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sidebar-card {
+      background: radial-gradient(circle at top right, #19223a 0, #080a12 55%);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-subtle);
+      padding: 14px 14px 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sidebar-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #f5f5ff;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .template-block {
+      background: rgba(3, 7, 18, 0.9);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px;
+      font-size: 11px;
+      color: #d4d7f6;
+      line-height: 1.5;
+      max-height: 260px;
+      overflow: auto;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
+
+    .highlight {
+      color: var(--accent-strong);
+      font-weight: 500;
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    .footer-note a {
+      color: var(--accent-strong);
+      text-decoration: none;
+    }
+
+    .footer-note a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="site-badge">
+        <span class="site-badge-dot"></span>
+        <span>The Vault Investigates · TruthDrop Portal</span>
+      </div>
+
+      <div class="title-row">
+        <div>
+          <h1>Resources for Investigators</h1>
+          <p class="subtitle">
+            A curated toolbox for tracking poverty scams, aid fraud, and nonprofit abuse
+            across the <span class="highlight">Philippines</span>, <span class="highlight">Puerto Rico</span>,
+            and the <span class="highlight">United States</span>.
+            Start by choosing your region below, then drill down into databases, public records tools,
+            and practical workflows.
+          </p>
+        </div>
+      </div>
+
+      <div class="tag-strip">
+        <span class="tag">Evidence-first</span>
+        <span class="tag">Public records</span>
+        <span class="tag">Disaster aid</span>
+        <span class="tag">Nonprofit oversight</span>
+      </div>
+
+      <!-- Region nav pills -->
+      <nav class="region-nav">
+        <a href="#philippines" class="region-pill">
+          <span class="flag">🇵🇭</span>
+          <strong>Philippines</strong>
+        </a>
+        <a href="#puerto-rico" class="region-pill">
+          <span class="flag">🇵🇷</span>
+          <strong>Puerto Rico</strong>
+        </a>
+        <a href="#united-states" class="region-pill">
+          <span class="flag">🇺🇸</span>
+          <strong>United States</strong>
+        </a>
+      </nav>
+    </header>
+
+    <main class="layout">
+      <!-- MAIN COLUMN -->
+      <section class="main-column">
+
+        <!-- PHILIPPINES -->
+        <div id="philippines" class="region-anchor"></div>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Philippines – Government & Awards Data</h2>
+            <span class="card-pill">🇵🇭 Region: Philippines</span>
+          </div>
+          <p class="section-text">
+            Tools and starting points to follow government spending, disaster aid, and nonprofit activity
+            in the Philippines. Focus on where funds are supposed to go, then look for gaps on the ground.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">
+                PH Government portals and procurement
+              </div>
+              <div class="link-meta">
+                Start with official agency and procurement sites for contracts, budgets, and project lists.
+                (Plug in the latest URLs you trust as you build this out.)
+              </div>
+            </li>
+            <li>
+              <div class="link-label">
+                Disaster & social protection programs
+              </div>
+              <div class="link-meta">
+                Track relief programs, cash transfers, and poverty-alleviation initiatives by agency, region, and year.
+              </div>
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="small-pill">Procurement</span>
+            <span class="small-pill">Disaster aid</span>
+            <span class="small-pill">Social protection</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Philippines – Records Requests & FOI</h2>
+            <span class="card-pill">FOI templates</span>
+          </div>
+          <p class="section-text">
+            Use these prompts as a base when filing FOI requests in the Philippines. Adjust agency names,
+            time ranges, and program titles to fit your case.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">Template – Program awards & monitoring</div>
+              <div class="link-meta">
+                Request award documents, implementing partners, monitoring/spot-check reports, and any audit findings
+                tied to a specific poverty or disaster program.
+              </div>
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="small-pill">FOI Philippines</span>
+            <span class="small-pill">Monitoring reports</span>
+            <span class="small-pill">Audit findings</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Philippines – Local context & media</h2>
+            <span class="card-pill">On-the-ground intel</span>
+          </div>
+          <p class="section-text">
+            Pair government data with local reporting and community knowledge. Look for coverage of
+            delayed projects, missing aid, or “ghost” beneficiaries.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">Local and regional news outlets</div>
+              <div class="link-meta">
+                Track outlets that routinely cover governance, disaster response, and corruption in your province or city.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">Civil society & watchdog groups</div>
+              <div class="link-meta">
+                NGOs and research groups often have reports and fieldwork that document gaps between paper and reality.
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- PUERTO RICO -->
+        <div id="puerto-rico" class="region-anchor"></div>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Puerto Rico – Awards & Contracts</h2>
+            <span class="card-pill">🇵🇷 Region: Puerto Rico</span>
+          </div>
+          <p class="section-text">
+            Focus on disaster recovery funds, federal transfers, and local contracts. Follow the money from
+            federal awards down to municipalities and implementing nonprofits.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">
+                Federal awards touching Puerto Rico
+              </div>
+              <div class="link-meta">
+                Use US-wide tools (below) and filter for “Puerto Rico” as recipient or place of performance,
+                then cross-check with local disclosures.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">
+                PR government transparency and contracting portals
+              </div>
+              <div class="link-meta">
+                Look for official procurement and budget portals listing contracts, vendors, and project descriptions.
+                Note any gaps between what’s awarded and what is visible on the ground.
+              </div>
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="small-pill">Disaster recovery</span>
+            <span class="small-pill">Federal transfers</span>
+            <span class="small-pill">Local contracts</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">Puerto Rico – Records & Oversight</h2>
+            <span class="card-pill">Public records</span>
+          </div>
+          <p class="section-text">
+            Combine local records requests with federal oversight material (IG reports, audits, enforcement actions)
+            to see where projects failed or money went sideways.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">Records requests to PR agencies</div>
+              <div class="link-meta">
+                Ask for contract files, amendments, subrecipient lists, monitoring/inspection reports, and any findings
+                tied to a specific program or award.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">Oversight board and IG reporting</div>
+              <div class="link-meta">
+                Check oversight bodies and inspectors general for prior investigations or warnings related to the same
+                vendors or nonprofits.
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- UNITED STATES -->
+        <div id="united-states" class="region-anchor"></div>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">United States – Federal Awards & Vendors</h2>
+            <span class="card-pill">🇺🇸 Region: United States</span>
+          </div>
+          <p class="section-text">
+            Federal award and vendor databases are the backbone for following US poverty, housing, and disaster money.
+            Use them to identify who is paid to do what, where, and when.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">USAspending.gov</div>
+              <div class="link-meta">
+                Search by recipient, program, city, or keyword to see grants and contracts tied to your target program or nonprofit.
+                Export results to filter by year, place, or amount.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">SAM.gov / entity registration</div>
+              <div class="link-meta">
+                Look up vendors and nonprofits receiving federal money. Confirm registration, exclusions, and related entities.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">FEMA and disaster aid portals</div>
+              <div class="link-meta">
+                For disaster-related cases, search FEMA awards, programs, and public assistance projects tied to your location.
+              </div>
+            </li>
+          </ul>
+          <div class="pill-row">
+            <span class="small-pill">USAspending</span>
+            <span class="small-pill">SAM.gov</span>
+            <span class="small-pill">FEMA</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">United States – FOIA & Records</h2>
+            <span class="card-pill">FOIA workflows</span>
+          </div>
+          <p class="section-text">
+            File focused FOIA requests for the specific awards and programs you already identified. The goal:
+            get award files, monitoring, and enforcement history in one place.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">Federal FOIA requests</div>
+              <div class="link-meta">
+                Ask for grant/contract award documents, scopes of work, subrecipient lists, monitoring reports,
+                and any audits or enforcement actions tied to a named program or recipient.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">State and local records laws</div>
+              <div class="link-meta">
+                Use state public records laws to see how federal money was passed through to counties, cities,
+                or local nonprofits.
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-header">
+            <h2 class="card-title">United States – Media, watchdogs, and tools</h2>
+            <span class="card-pill">Context & patterns</span>
+          </div>
+          <p class="section-text">
+            Combine data with watchdog reporting and specialized tools that flag suspicious awards or repeat offenders.
+          </p>
+          <ul class="link-list">
+            <li>
+              <div class="link-label">Investigative outlets & local media</div>
+              <div class="link-meta">
+                Map out outlets that regularly cover poverty programs, housing authorities, disaster aid,
+                and nonprofit scandals in your city or state.
+              </div>
+            </li>
+            <li>
+              <div class="link-label">Watchdog databases & research tools</div>
+              <div class="link-meta">
+                Track prior investigations into the same charities, vendors, or shell nonprofits you’re seeing in award data.
+              </div>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <section class="sidebar-card">
+          <h3 class="sidebar-title">How to use this page</h3>
+          <p class="sidebar-text">
+            1) Pick your region at the top. 2) Use the databases to find who is paid to do what.
+            3) File targeted records requests. 4) Compare “on paper” to reality on the ground.
+          </p>
+        </section>
+
+        <section class="sidebar-card">
+          <h3 class="sidebar-title">FOIA / records template</h3>
+          <p class="sidebar-text">
+            A generic wording you can adapt for any region. Replace the parts in brackets with your details.
+          </p>
+          <div class="template-block">
+            <code>
+To: [Agency / Department Name]<br/>
+Subject: Request for records related to [PROGRAM / NONPROFIT NAME]<br/><br/>
+
+This is a request for records related to the administration, oversight, and funding of
+<strong>[PROGRAM / NONPROFIT NAME]</strong> in <strong>[CITY / PROVINCE / STATE]</strong> for the period
+<strong>[DATE RANGE]</strong>.<br/><br/>
+
+Please provide, in electronic form where possible:<br/>
+1. All grant or contract award documents, including scopes of work and budgets, naming
+   [PROGRAM / NONPROFIT NAME] as a recipient, subrecipient, or implementing partner.<br/>
+2. Any monitoring, inspection, or site visit reports related to these awards, including
+   notes on compliance, performance, or beneficiary verification.<br/>
+3. Any audits, evaluations, or investigative findings that reference [PROGRAM / NONPROFIT NAME]
+   or its key officers during the requested period.<br/>
+4. Any notices of suspension, debarment, refund, clawback, or enforcement actions arising
+   from these awards.<br/><br/>
+
+If any portion of this request is denied, please provide the specific legal basis for the
+denial and release all reasonably segregable non-exempt portions of records.<br/><br/>
+
+I am requesting a fee waiver (or reduction) as these records are sought in the public interest
+to shed light on the use of public funds and the delivery of services to low-income communities.<br/><br/>
+
+Sincerely,<br/>
+[Your name or organization]<br/>
+[Contact information]
+            </code>
+          </div>
+        </section>
+
+        <section class="sidebar-card">
+          <h3 class="sidebar-title">TruthDrop & collaboration</h3>
+          <p class="sidebar-text">
+            Vetted investigators can request access to the TruthDrop portal to share leads, cross-check awards,
+            and compare patterns across the Philippines, Puerto Rico, and the United States.
+          </p>
+          <p class="sidebar-text">
+            Public tips and documents can be sent through the Evidence Drop page. Use this page as your map;
+            use TruthDrop to keep the receipts organized.
+          </p>
+        </section>
+      </aside>
+    </main>
+
+    <p class="footer-note">
+      This resources page will evolve over time. As new tools are added or retired,
+      links will be updated and workflows refined. For corrections or suggestions, contact
+      <a href="mailto:vaultinvestigates@protonmail.com">vaultinvestigates@protonmail.com</a>.
+    </p>
+  </div>
+</body>
+</html>
