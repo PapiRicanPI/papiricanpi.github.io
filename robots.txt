@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /staff_gate.html
+Disallow: /VaultOps_Console.html
+Disallow: /exit.html
+Disallow: /exit-confirmed.html
+Disallow: /index.backup.20250903-113644.html
+Disallow: /Scripts/
+Disallow: /seed/
+Disallow: /sample/
+Disallow: /pico.save
+
+Sitemap: https://truthdrop.io/sitemap.xml
