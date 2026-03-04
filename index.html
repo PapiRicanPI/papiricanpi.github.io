@@ -1,11 +1,780 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Loading…</title>
-  <meta http-equiv="refresh" content="0; url=home.html" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TruthDrop.io — The Vault Investigates</title>
+<meta name="description" content="Independent investigative archive tracking how poverty becomes a business model in the US, Puerto Rico, and the Philippines. Run by a disabled U.S. veteran. No institutional funding.">
+<meta property="og:title" content="TruthDrop.io — The Vault Investigates">
+<meta property="og:description" content="Every poverty headline you see is just the tip of the iceberg. We follow the money. No institutional funding. No conflicts of interest.">
+<meta property="og:url" content="https://truthdrop.io">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="TruthDrop.io — The Vault Investigates">
+<meta name="twitter:description" content="Independent investigative archive. Disabled U.S. veteran. Following the money behind poverty.">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #080808;
+  --deep: #0e0e0e;
+  --edge: #1e1e1e;
+  --gold: #c8973a;
+  --gold-light: #e0b355;
+  --gold-dim: #7a5a22;
+  --white: #f0ece4;
+  --muted: #8a8070;
+  --faint: #2a2520;
+  --red: #9b2c1a;
+  --green: #2a6b3a;
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--void);
+  color: var(--white);
+  font-family: 'Crimson Text', Georgia, serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.4;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8,8,8,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--faint);
+  padding: 0 2.5rem; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--white); text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-link {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-link:hover { color: var(--gold); }
+.nav-btn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--void);
+  background: var(--gold); padding: 0.45rem 1.1rem;
+  text-decoration: none; transition: background 0.2s;
+}
+.nav-btn:hover { background: var(--gold-light); }
+@media(max-width:680px) {
+  nav { padding: 0 1rem; }
+  .nav-links { gap: 1rem; }
+  .nav-link { display: none; }
+}
+
+/* ── TICKER ── */
+.ticker {
+  position: fixed; top: 58px; left: 0; right: 0; z-index: 99;
+  background: var(--red); padding: 0.5rem 0; overflow: hidden;
+}
+.ticker-track {
+  display: flex; width: max-content;
+  animation: ticker 40s linear infinite;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-item {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: rgba(255,255,255,0.85);
+  white-space: nowrap; padding: 0 2.5rem;
+}
+.ticker-item::before { content: '◆ '; color: rgba(255,255,255,0.4); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  position: relative; overflow: hidden;
+  padding: 120px 2rem 4rem;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,151,58,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,151,58,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
+}
+.hero-glow {
+  position: absolute;
+  width: 600px; height: 600px;
+  background: radial-gradient(ellipse, rgba(200,151,58,0.08) 0%, transparent 70%);
+  top: 50%; left: 50%; transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 860px; text-align: center;
+}
+.hero-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 2rem; display: flex;
+  align-items: center; justify-content: center; gap: 1rem;
+  opacity: 0; animation: rise 0.8s 0.2s ease forwards;
+}
+.hero-tag::before, .hero-tag::after {
+  content: ''; height: 1px; width: 40px;
+  background: var(--gold-dim);
+}
+.hero-title {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  line-height: 0.93; text-transform: uppercase;
+  color: var(--white); margin-bottom: 0;
+  opacity: 0; animation: rise 0.8s 0.4s ease forwards;
+}
+.hero-title .line2 { color: var(--gold); display: block; }
+.hero-title .line3 { color: var(--muted); display: block; font-size: 0.55em; letter-spacing: 0.08em; margin-top: 0.3em; }
+.gold-rule {
+  width: 180px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 2.5rem auto;
+  opacity: 0; animation: expand 0.8s 0.7s ease forwards;
+}
+@keyframes expand { from { opacity:0; transform:scaleX(0); } to { opacity:1; transform:scaleX(1); } }
+.hero-sub {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-style: italic; color: var(--muted);
+  line-height: 1.75; max-width: 600px;
+  margin: 0 auto 3rem;
+  opacity: 0; animation: rise 0.8s 0.9s ease forwards;
+}
+.hero-sub strong { color: var(--white); font-style: normal; }
+.hero-actions {
+  display: flex; gap: 1rem;
+  justify-content: center; flex-wrap: wrap;
+  opacity: 0; animation: rise 0.8s 1.1s ease forwards;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.btn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.7rem; letter-spacing: 0.18em;
+  text-transform: uppercase; text-decoration: none;
+  padding: 0.9rem 2rem; display: inline-block;
+  transition: all 0.2s; border: none; cursor: crosshair;
+}
+.btn-primary { background: var(--gold); color: var(--void); }
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost { background: transparent; color: var(--white); border: 1px solid var(--faint); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: #b33320; transform: translateY(-2px); }
+
+/* ── SCROLL INDICATOR ── */
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--faint);
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0.5rem;
+  opacity: 0; animation: rise 0.8s 1.5s ease forwards;
+}
+.scroll-line {
+  width: 1px; height: 40px;
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+  animation: scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse {
+  0%,100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.2); }
+}
+
+/* ── SECTIONS ── */
+.section { max-width: 960px; margin: 0 auto; padding: 6rem 2rem; }
+.section-tag {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 3rem;
+}
+.section-tag::after { content: ''; height: 1px; width: 50px; background: var(--gold-dim); }
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  text-transform: uppercase; line-height: 1.05;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+h2 .gold { color: var(--gold); }
+.rule { border: none; border-top: 1px solid var(--edge); }
+.dark-band { background: var(--deep); }
+
+/* ── MISSION BLOCK ── */
+.mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start;
+}
+@media(max-width:700px) { .mission-grid { grid-template-columns: 1fr; gap: 2rem; } }
+.mission-body { font-size: 1.15rem; line-height: 1.9; color: #a09080; }
+.mission-body p { margin-bottom: 1.3rem; }
+.mission-body strong { color: var(--white); }
+.mission-body em { color: var(--gold); font-style: normal; }
+.pull-quote {
+  border-left: 2px solid var(--gold);
+  padding: 1.5rem 2rem;
+  background: rgba(200,151,58,0.04);
+  margin: 2rem 0;
+}
+.pull-quote p {
+  font-family: 'Crimson Text', serif;
+  font-size: 1.35rem; font-style: italic;
+  color: var(--white); line-height: 1.5;
+}
+
+/* ── STAT BLOCKS ── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--edge);
+  border: 1px solid var(--edge);
+  margin-top: 3rem;
+}
+@media(max-width:600px) { .stat-row { grid-template-columns: 1fr; } }
+.stat-block {
+  background: var(--void);
+  padding: 2.5rem 2rem;
+  position: relative;
+}
+.stat-block::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.stat-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem; font-weight: 700;
+  color: var(--gold); line-height: 1; display: block;
+}
+.stat-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: 0.5rem; display: block;
+}
+.stat-desc { font-size: 0.9rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.5; }
+
+/* ── COVERAGE GRID ── */
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--edge);
+  border: 1px solid var(--edge);
+  margin-top: 2.5rem;
+}
+@media(max-width:600px) { .coverage-grid { grid-template-columns: 1fr; } }
+.coverage-card {
+  background: var(--void);
+  padding: 2.5rem 2rem;
+  transition: background 0.2s;
+}
+.coverage-card:hover { background: #0c0c0c; }
+.coverage-flag {
+  font-size: 2rem; margin-bottom: 1rem; display: block;
+}
+.coverage-region {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.3rem; font-weight: 600;
+  text-transform: uppercase; color: var(--white);
+  margin-bottom: 0.5rem; display: block;
+}
+.coverage-desc { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
+
+/* ── PORTALS ── */
+.portal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--edge);
+  border: 1px solid var(--edge);
+  margin-top: 2.5rem;
+}
+@media(max-width:600px) { .portal-grid { grid-template-columns: 1fr; } }
+.portal-card {
+  background: var(--void); padding: 3rem 2.5rem;
+  position: relative; overflow: hidden;
+  transition: background 0.2s;
+}
+.portal-card:hover { background: #0a0a0a; }
+.portal-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.portal-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+.portal-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem; font-weight: 600;
+  text-transform: uppercase; color: var(--white);
+  margin-bottom: 0.5rem;
+}
+.portal-title span { color: var(--gold); }
+.portal-desc { font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+.portal-link {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 0.65rem 1.4rem; display: inline-block;
+  transition: all 0.2s;
+}
+.portal-link:hover { background: var(--gold); color: var(--void); }
+
+/* ── DONATE ── */
+.donate-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--edge);
+  border: 1px solid var(--edge);
+  margin-top: 2.5rem;
+}
+@media(max-width:600px) { .donate-grid { grid-template-columns: 1fr; } }
+.donate-card {
+  background: var(--void); padding: 2.5rem 2rem;
+  display: flex; flex-direction: column;
+  transition: background 0.2s;
+}
+.donate-card:hover { background: #0c0c0c; }
+.donate-card.featured {
+  background: #0c0a06; position: relative;
+}
+.donate-card.featured::after {
+  content: '★ MOST NEEDED';
+  position: absolute; top: 0; left: 0; right: 0;
+  background: var(--gold); color: var(--void);
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.55rem; letter-spacing: 0.2em;
+  text-align: center; padding: 0.4rem;
+}
+.donate-card.featured .donate-top { margin-top: 1.5rem; }
+.donate-platform {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 0.7rem; display: block;
+}
+.donate-amount {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.5rem; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+.donate-freq {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.65rem; color: var(--muted);
+}
+.donate-name {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin: 0.8rem 0 0.5rem; display: block;
+}
+.donate-desc {
+  font-size: 0.92rem; color: var(--muted);
+  line-height: 1.6; flex: 1; margin-bottom: 1.5rem;
+}
+.donate-btn {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--white);
+  text-decoration: none;
+  border: 1px solid var(--faint);
+  padding: 0.65rem 1.1rem; text-align: center;
+  transition: all 0.2s; display: block;
+}
+.donate-btn:hover { border-color: var(--gold); color: var(--gold); }
+.donate-card.featured .donate-btn {
+  background: var(--gold); color: var(--void); border-color: var(--gold);
+}
+.donate-card.featured .donate-btn:hover { background: var(--gold-light); }
+
+/* ── FINAL CTA ── */
+.final {
+  position: relative; overflow: hidden;
+  padding: 9rem 2rem; text-align: center;
+  background: var(--deep);
+}
+.ring {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(200,151,58,0.06);
+  pointer-events: none;
+  animation: pulse 6s ease-in-out infinite;
+}
+.ring:nth-child(1) { width: 300px; height: 300px; }
+.ring:nth-child(2) { width: 550px; height: 550px; animation-delay: 1.5s; }
+.ring:nth-child(3) { width: 800px; height: 800px; animation-delay: 3s; }
+@keyframes pulse { 0%,100%{opacity:0.3}50%{opacity:1} }
+.final-inner { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+.final-kicker {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.62rem; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--muted);
+  display: block; margin-bottom: 1.5rem;
+}
+.final-heading {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5vw, 4rem);
+  text-transform: uppercase; line-height: 1.05;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+.final-heading span { color: var(--gold); }
+.final-body {
+  font-size: 1.15rem; font-style: italic;
+  color: var(--muted); line-height: 1.75;
+  margin-bottom: 3rem;
+}
+.final-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── FOOTER ── */
+footer {
+  background: #040404;
+  border-top: 1px solid #111;
+  padding: 3rem 2rem;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 1.5rem;
+  text-align: center;
+}
+.footer-logo {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700; font-size: 1.1rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--white);
+}
+.footer-logo span { color: var(--gold); }
+.footer-tagline {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.6rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+}
+.footer-links { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+.footer-links a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold); }
+.footer-social { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
+.footer-social a {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.58rem; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--faint);
+  text-decoration: none; transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--gold); }
+.footer-note {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.52rem; letter-spacing: 0.12em;
+  text-transform: uppercase; color: #2a2520;
+  max-width: 500px; line-height: 1.8;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
 </head>
 <body>
-  <p>If you are not redirected, <a href="home.html">click here</a>.</p>
+
+<nav>
+  <a href="/" class="nav-logo">Truth<span>Drop</span>.io</a>
+  <div class="nav-links">
+    <a href="https://thevaultinvestigates.cloud/" class="nav-link">Archive</a>
+    <a href="https://thevaultinvestigates.cloud/" class="nav-link">Investigations</a>
+    <a href="/tips" class="nav-link">Submit Tip</a>
+    <a href="https://ko-fi.com/thevaultinvestigates/tiers" class="nav-btn">Support →</a>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Independent investigative archive</span>
+    <span class="ticker-item">Disabled U.S. veteran — fixed income — no institutional funding</span>
+    <span class="ticker-item">Following the money behind poverty</span>
+    <span class="ticker-item">US · Puerto Rico · Philippines</span>
+    <span class="ticker-item">No ads · No NGO money · No conflicts of interest</span>
+    <span class="ticker-item">Submit tips anonymously — encrypted — IP never logged</span>
+    <span class="ticker-item">Independent investigative archive</span>
+    <span class="ticker-item">Disabled U.S. veteran — fixed income — no institutional funding</span>
+    <span class="ticker-item">Following the money behind poverty</span>
+    <span class="ticker-item">US · Puerto Rico · Philippines</span>
+    <span class="ticker-item">No ads · No NGO money · No conflicts of interest</span>
+    <span class="ticker-item">Submit tips anonymously — encrypted — IP never logged</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <p class="hero-tag">The Vault Investigates</p>
+    <h1 class="hero-title">
+      Every headline
+      <span class="line2">is the tip</span>
+      <span class="line3">of the iceberg</span>
+    </h1>
+    <div class="gold-rule"></div>
+    <p class="hero-sub">
+      <strong>The Vault Investigates</strong> is an independent,
+      one-person investigative archive run by a disabled U.S. veteran
+      on Social Security — tracking how poverty becomes a
+      <strong>business model</strong> in the US, Puerto Rico,
+      and the Philippines. With receipts. Not vibes.
+    </p>
+    <div class="hero-actions">
+      <a href="https://ko-fi.com/thevaultinvestigates/tiers" class="btn btn-primary">Fund the archive →</a>
+      <a href="/tips" class="btn btn-red">Submit a tip</a>
+      <a href="https://thevaultinvestigates.cloud/" class="btn btn-ghost">Read the investigations</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</div>
+
+<!-- MISSION -->
+<section class="section reveal">
+  <p class="section-tag">The mission</p>
+  <div class="mission-grid">
+    <div>
+      <h2>If you're tired of NGOs, politicians, and developers getting rich off <span class="gold">"helping the poor"</span></h2>
+      <div class="pull-quote">
+        <p>"Most investigative projects are funded by the same institutions they scrutinize. This one isn't. It runs on reader support — or it doesn't run."</p>
+      </div>
+    </div>
+    <div class="mission-body">
+      <p>The Vault Investigates is built to expose them — with <em>court records</em>, <em>audits</em>, <em>contracts</em>, and <em>public filings</em> connected into timelines that follow the money long after the news cycle moves on.</p>
+      <p>No sponsors. No party machine. No brand pipeline. No conflicts of interest. Just a disabled U.S. veteran, a fixed income, and years of documents that prove the poverty industry is exactly that — <strong>an industry.</strong></p>
+      <p>The news cycle moves on. <strong>The Vault doesn't.</strong></p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- STATS -->
+<div class="dark-band">
+  <section class="section reveal">
+    <p class="section-tag">The reality</p>
+    <h2>Numbers that don't <span class="gold">lie</span></h2>
+    <div class="stat-row">
+      <div class="stat-block">
+        <span class="stat-num">214</span>
+        <span class="stat-label">Subscribers — 0 recurring donors</span>
+        <p class="stat-desc">The work is real. The support hasn't followed yet. Be one of ten.</p>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num">$0</span>
+        <span class="stat-label">Institutional funding — ever</span>
+        <p class="stat-desc">No foundation money. No NGO backing. No government grants. One fixed income.</p>
+      </div>
+      <div class="stat-block">
+        <span class="stat-num">10</span>
+        <span class="stat-label">Donors needed at $10/month</span>
+        <p class="stat-desc">Ten people at $10/month keeps this archive alive for a full year.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="rule">
+
+<!-- COVERAGE -->
+<section class="section reveal">
+  <p class="section-tag">Coverage</p>
+  <h2>Three regions. <span class="gold">One machine.</span></h2>
+  <div class="coverage-grid">
+    <div class="coverage-card">
+      <span class="coverage-flag">🇺🇸</span>
+      <span class="coverage-region">United States</span>
+      <p class="coverage-desc">Federal poverty contractors, community action agency fraud, welfare reform profiteers, and the 50-year history of the poverty industrial complex.</p>
+    </div>
+    <div class="coverage-card">
+      <span class="coverage-flag">🇵🇷</span>
+      <span class="coverage-region">Puerto Rico</span>
+      <p class="coverage-desc">Federal disaster recovery funds, NGO accountability, government contract abuse, and how U.S. citizenship becomes optional when the money runs out.</p>
+    </div>
+    <div class="coverage-card">
+      <span class="coverage-flag">🇵🇭</span>
+      <span class="coverage-region">Philippines</span>
+      <p class="coverage-desc">YouTube charity vlogging, donation rail opacity, DSWD enforcement gaps, and how 59.6 million viewers became the market for poverty as content.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- PORTALS -->
+<div class="dark-band">
+  <section class="section reveal">
+    <p class="section-tag">The infrastructure</p>
+    <h2>Two portals. <span class="gold">One mission.</span></h2>
+    <div class="portal-grid">
+      <div class="portal-card">
+        <span class="portal-icon">🔒</span>
+        <div class="portal-title">Submit a <span>Tip</span></div>
+        <p class="portal-desc">Documents, leads, evidence — submitted securely and anonymously. Your identity is never stored. Your IP is never logged. All submissions encrypted. Reviewed within 48 hours.</p>
+        <a href="/tips" class="portal-link">Submit anonymously →</a>
+      </div>
+      <div class="portal-card">
+        <span class="portal-icon">🗄️</span>
+        <div class="portal-title">Request <span>Access</span></div>
+        <p class="portal-desc">Researchers, journalists, and investigators can apply for gated access to The Vault's full case file database. Vetted individually. 3–5 day review process.</p>
+        <a href="https://vet.thevault.watch/" class="portal-link">Apply for access →</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<hr class="rule">
+
+<!-- DONATE -->
+<section class="section reveal">
+  <p class="section-tag">Support the archive</p>
+  <h2>Fund the work that <span class="gold">follows the money</span></h2>
+  <div class="donate-grid">
+
+    <div class="donate-card featured">
+      <div class="donate-top">
+        <span class="donate-platform">Ko-fi · Monthly</span>
+        <span class="donate-amount">$10</span>
+        <span class="donate-freq">/month</span>
+      </div>
+      <span class="donate-name">Archivist's Ally</span>
+      <p class="donate-desc">Ten people at this level covers a full month of infrastructure. Be one of ten.</p>
+      <a href="https://ko-fi.com/thevaultinvestigates/tiers" class="donate-btn">Give $10/month →</a>
+    </div>
+
+    <div class="donate-card">
+      <div class="donate-top">
+        <span class="donate-platform">Ko-fi · Any amount above $5</span>
+        <span class="donate-amount">$5+</span>
+        <span class="donate-freq">/month</span>
+      </div>
+      <span class="donate-name">The Witness</span>
+      <p class="donate-desc">Give $5, $10, $15 or whatever you can above $5. Every dollar goes directly to the archive.</p>
+      <a href="https://ko-fi.com/thevaultinvestigates/tiers" class="donate-btn">Give on Ko-fi →</a>
+    </div>
+
+    <div class="donate-card">
+      <div class="donate-top">
+        <span class="donate-platform">PayPal · One-time Annual</span>
+        <span class="donate-amount">$60</span>
+        <span class="donate-freq">/year</span>
+      </div>
+      <span class="donate-name">Annual Supporter</span>
+      <p class="donate-desc">One yearly contribution funds the archive for a full year. Simplest way to give.</p>
+      <a href="https://www.paypal.com/ncp/payment/JH4X7243NJMRE" class="donate-btn">Give annually →</a>
+    </div>
+
+  </div>
+
+  <div style="margin-top:1px;">
+    <div style="background:var(--deep);padding:2.5rem;border:1px solid var(--edge);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;">
+      <div>
+        <span style="font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:0.6rem;">◆ GoFundMe · One-time · Any amount</span>
+        <p style="font-size:1rem;color:var(--muted);line-height:1.65;max-width:480px;">One-time boost, any amount. Every dollar goes directly to records, tools, hosting, and backups — not yachts or junkets.</p>
+      </div>
+      <a href="https://gofund.me/c2a9993c3"
+         style="font-family:'Courier Prime',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);text-decoration:none;border:1px solid #2a2520;padding:0.8rem 1.8rem;white-space:nowrap;transition:all 0.2s;display:inline-block;"
+         onmouseover="this.style.borderColor='#c8973a';this.style.color='#c8973a'"
+         onmouseout="this.style.borderColor='#2a2520';this.style.color='var(--white)'">
+        Give on GoFundMe →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<div class="final">
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="ring"></div>
+  <div class="final-inner">
+    <span class="final-kicker">The ask</span>
+    <h2 class="final-heading">10 of <span>214</span> readers.<br>That's all it takes.</h2>
+    <p class="final-body">If just 10 people gave $10 a month, the investigations continue. The archive survives. The money gets followed. The receipts stay public.</p>
+    <div class="final-actions">
+      <a href="https://ko-fi.com/thevaultinvestigates/tiers" class="btn btn-primary">Be one of ten →</a>
+      <a href="/tips" class="btn btn-red">Submit a tip</a>
+      <a href="https://thevaultinvestigates.cloud/" class="btn btn-ghost">Read the archive</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">Truth<span>Drop</span>.io</div>
+  <p class="footer-tagline">The Vault Investigates · Independent · Veteran-run · No institutional funding</p>
+  <div class="footer-links">
+    <a href="https://thevaultinvestigates.cloud/">Archive</a>
+    <a href="/tips">Submit Tip</a>
+    <a href="https://vet.thevault.watch/">Apply for Access</a>
+    <a href="https://ko-fi.com/thevaultinvestigates/tiers">Ko-fi</a>
+    <a href="https://www.paypal.com/ncp/payment/JH4X7243NJMRE">PayPal</a>
+    <a href="https://gofund.me/c2a9993c3">GoFundMe</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://x.com/PovertyVault">X · @PovertyVault</a>
+    <a href="https://www.facebook.com/vaultarchivist/">Facebook</a>
+    <a href="https://www.instagram.com/businessofpoverty/">Instagram</a>
+  </div>
+  <p class="footer-note">Independent · Veteran-run · No institutional funding · Following the money · US · Puerto Rico · Philippines</p>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+reveals.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
